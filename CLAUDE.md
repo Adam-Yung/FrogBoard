@@ -1,5 +1,14 @@
 # Silakka54 ZMK — AI Context
 
+## Maintenance Rule
+**Any time you change key mappings:**
+1. Update the bindings in `config/lily58.keymap`
+2. Update the ASCII diagrams and comments inside that file
+3. Update the relevant section(s) in this file (`CLAUDE.md`)
+4. Update the corresponding section(s) in `USERGUIDE.md`
+
+---
+
 ## Hardware
 - **Board**: nice!nano v2 (both halves)
 - **Display**: nice!view (e-ink, no RGB/backlight)
@@ -20,64 +29,117 @@ Thumb:  50 51 52 ×            |    × 55 56 57
 | # | Name | Activation |
 |---|------|------------|
 | 0 | BASE | default |
-| 1 | NAV  | hold left-outer or right-outer thumb |
-| 2 | SYM  | hold left-inner or right-inner thumb |
-| 3 | FN   | NAV + SYM held simultaneously (tri-layer) |
+| 1 | NAV  | hold left inner thumb (52) or right inner thumb (55) |
+| 2 | SYM  | hold left outer thumb (50) or right outer thumb (57) |
+| 3 | FN   | both NAV thumbs simultaneously (52+55 combo), OR tri-layer NAV+SYM |
+| 4 | JUMP | NAV active + hold D key (27) — word/line-level navigation |
+| 5 | HRM  | hold left middle thumb (51) or right middle thumb (56) |
 
 ## Thumb Cluster
 ```
-Left:   LT(NAV,ESC)  LSFT  LT(SYM,SPC)
-Right:  LT(SYM,BSP)  RSFT  LT(NAV,RET)
+Left  (outer → inner): 50=SYM/ENT  51=HRM/TAB  52=NAV/SPC
+Right (inner → outer): 55=NAV/BSPC 56=HRM/nop  57=SYM/DEL
+
+Tap actions  (left → right): ENT · TAB · SPC | BSPC · nop · DEL
+Hold actions (left → right): SYM · HRM · NAV | NAV  · HRM · SYM
 ```
 
-## Home Row Mods (BASE row 2 — positions 25-28 / 31-34)
+## Outer Column Keys (BASE layer)
+
+### Left outer column (top → bottom)
+| Pos | Key | Tap | Hold |
+|-----|-----|-----|------|
+| 00  | row of `1` | `` ` `` (single) / `~` (double) | — |
+| 12  | row of `Q` | TAB | ALT |
+| 24  | row of `A` | ESC | CTRL |
+| 36  | row of `Z` | LSFT | — |
+
+### Right outer column (top → bottom)
+| Pos | Key | Tap | Double-tap | Long-hold |
+|-----|-----|-----|-----------|-----------|
+| 11  | row of `0` | `=` | `+` | — |
+| 23  | row of `P` | `-` | `_` | — |
+| 35  | row of `;` | `'` | `"` | Hyper (⌘^⌥⇧) |
+| 49  | row of `/` | `(` | `)` | — |
+
+## HRM Layer (layer 5)
+Activated by holding either middle thumb. Home row becomes modifiers — no timing issues.
 ```
-A=LGUI  S=LALT  D=LCTL  F=LSFT  |  J=RSFT  K=RCTL  L=RALT  ;=RGUI
+A = LCTL   S = LALT   D = LGUI   F = LSFT   (left hand)
+J = RSFT   K = RGUI   L = RALT   ; = RCTL   (right hand)
 ```
-- Behavior: `balanced` flavor, 200 ms tapping term, 175 ms quick-tap, 150 ms prior-idle, `hold-trigger-on-release`
-- `hml` triggers only on right-side keys; `hmr` only on left-side keys
+- Hold HRM + A, then type right-hand key → Ctrl+key
+- Hold HRM + LSFT(F), then type → shift+key
+- Hold HRM + NAV simultaneously → modifier+arrow navigation
 
-## Combos (BASE layer)
-| Keys | Positions | Output |
-|------|-----------|--------|
-| J+K | 31+32 | ESC |
-| F+J | 28+31 | Caps Word |
-| D+F | 27+28 | Key Repeat |
-| '+NAV/RET | 35+57 | Hyper (⌘^⌥⇧) |
+## NAV Layer (layer 1)
+**Right hand — movement:**
+- `H/J/K/L` = ←/↓/↑/→ (vim arrows, home row)
+- `U/I` = PgUp / PgDn
+- `,`/`.` = ⌘↑/⌘↓ (doc top / doc bottom)
 
-## File Layout
+**Left hand — editing:**
+- `A` = Select All  `S` = Undo  `D` = [JUMP mode]  `F` = LSFT (shift-select)
+- `Q` = Shift+Enter  `W` = Select Word  `E` = Select Line  `R` = Redo
+- `X` = Cut  `C` = Copy  `V` = Paste
+
+**Thumb in NAV:**
+- Left middle (51) = LSFT
+- Right inner (55) = ⌥⌫ (delete word back)
+- Right outer (57) = ⌥⌦ (delete word forward)
+
+## JUMP Mode (layer 4 — NAV + hold D)
+HJKL become word/line jumps:
+- `H` = ⌥← (word back)  `L` = ⌥→ (word forward)
+- `J` = ⌘← (line start)  `K` = ⌘→ (line end)
+
+Add F for shift-select:
+- `D+F+H/L` = select word  `D+F+J/K` = select to line start/end
+
+## SYM Layer (layer 2)
+Symmetric bracket pairs by finger position. Same finger = same bracket type (open left, close right).
+
+**Row 2 (home row) — bracket pairs:**
 ```
-config/
-  lily58.keymap   — layers, behaviors, combos
-  macros.dtsi     — included inside behaviors{} block (not a standalone file)
-  lily58.conf     — Kconfig options (display, BT, sleep)
-  west.yml        — ZMK module manifest
-build.yaml        — GitHub Actions build matrix
+Pinky:  A=<   ;=>       (angle brackets)
+Ring:   S=[   L=]       (square brackets)
+Middle: D={   K=}       (curly braces)       ← user D↔K pair
+Index:  F=(   J=)       (parentheses)        ← user F↔J pair
+Inner:  G==   H=!       (core operators)
 ```
 
-## Important Constraints
-- `macros.dtsi` is `#include`d **inside** the `behaviors {}` block in `lily58.keymap`.
-  Do NOT add node wrappers (`/ { behaviors { ... } };`) inside `macros.dtsi`.
-- Lily58 shield always requires 58 binding entries per layer; missing Silakka54 positions use `&none`.
-- `&lt NAV ESC` expands to `&lt 1 ESC` via `#define NAV 1` preprocessor.
-- `hold-trigger-on-release` is a valid ZMK hold-tap property (v3+).
-- `conditional_layers` block goes in the root `/` node, not inside `keymap {}`.
+**Row 1 (special chars + combo digraphs):**
+```
+Left:  Q=`  W=~  E=@  R=#  T=$
+Right: Y=%  U=^  I=*  O=&  P=|
+```
+SYM-layer combos (adjacent fingers while SYM is held):
+- W+E (14+15) → `!=`    E+R (15+16) → `==`
+- U+I (19+20) → `=>`    I+O (20+21) → `->`
 
-## NAV Layer (from Karabiner caps-lock nav)
-Right hand (hjkl = arrows):
-- `H/J/K/L` = ←↓↑→
-- `U/O` = ⌘← / ⌘→ (line home/end)
-- `Y/P` = ⌥← / ⌥→ (word back/fwd)
-- `=/;` = PgUp / PgDn
-- `M/,/./` = ⌫ / ⌥⌫ / ⌥⌦ / ⌦
+**Row 3 (auto-close macros, aligned with row 2):**
+```
+Left:  Z=auto<>  X=auto[]  C=auto{}  V=auto()  B=auto''
+Right: N=auto""  M=auto``  ,=?  .=:  /=\
+```
+Outer cols in SYM = &trans (fall through to BASE tap-dances: =+, -_, '", ())
 
-Left hand (edit ops):
-- `A` = Select All, `S` = Undo, `D` = Redo, `C` = Copy, `X` = Cut, `V` = Paste
-- `Q` = Shift+Enter, `W` = Select Word, `E` = Select Line
+## Combos
+| Keys | Positions | Layers | Output |
+|------|-----------|--------|--------|
+| NAV+NAV | 52+55 | any | FN layer (momentary) |
+| SYM+SYM | 50+57 | any | Hyper ⌘^⌥⇧ |
+| W+E | 14+15 | SYM | `!=` |
+| E+R | 15+16 | SYM | `==` |
+| U+I | 19+20 | SYM | `=>` |
+| I+O | 20+21 | SYM | `->` |
 
-## SYM Layer (from Karabiner ESC-hold symbols)
-Right hand mirrors Karabiner positions (same keys, same symbols).
-Left hand has auto-close macros: `A`=() `S`={}  `D`=[]  `F`='' `G`="" + row3: backtick/angle pairs.
+## Behaviors Defined in lily58.keymap
+- `td_grave_tilde` — tap=\`, double=~ (pos 00)
+- `td_equal_plus` — tap==, double=+ (pos 11)
+- `td_minus_under` — tap=-, double=_ (pos 23)
+- `td_sqt_dqt` — tap=', double=" (pos 35)
+- `td_lpar_rpar` — tap=(, double=) (pos 49)
 
 ## Macros in macros.dtsi
 Auto-close: `macro_parens` `macro_braces` `macro_brackets` `macro_quotes` `macro_dquotes` `macro_backticks` `macro_angles` `macro_triple_backtick`
@@ -87,8 +149,31 @@ Win: `Win_Cut/Copy/Paste/Undo/Desktop/Snip_Tool`
 Mouse: `Double_Click`
 
 ## Display Widgets (nice!view)
-Battery % · Layer name · WPM counter
-Custom status screen enabled (`CONFIG_ZMK_DISPLAY_STATUS_SCREEN_CUSTOM=y`).
+Three regions on screen:
+- **Top**: Battery % bar + WPM graph + USB/BLE indicator
+- **Middle**: 5 Bluetooth profile circles (solid=connected, dashed=paired, filled=selected)
+- **Bottom**: Active layer name (base / nav / sym / fn / jump / hrm)
+
+## File Layout
+```
+config/
+  lily58.keymap   — layers, behaviors, combos
+  macros.dtsi     — included inside behaviors{} block (not standalone)
+  lily58.conf     — Kconfig options (display, BT, sleep)
+  west.yml        — ZMK module manifest
+build.yaml        — GitHub Actions build matrix
+USERGUIDE.md      — Human-readable keyboard usage guide
+```
+
+## Important Constraints
+- `macros.dtsi` is `#include`d **inside** the `behaviors {}` block in `lily58.keymap`.
+  Do NOT add node wrappers (`/ { behaviors { ... } };`) inside `macros.dtsi`.
+- Lily58 shield always requires 58 binding entries per layer; missing Silakka54 positions use `&none`.
+- `#define NAV 1` etc. — layer numbers are preprocessor defines, use names not numbers in keymap.
+- `hold-trigger-on-release` is a valid ZMK hold-tap property (v3+).
+- `conditional_layers` block goes in the root `/` node, not inside `keymap {}`.
+- `ht_quotes_hyper` uses `#binding-cells = <0>` — both hold and tap bindings are statically fixed.
+  Fallback if compile fails: convert to 3-binding tap-dance (triple-tap = Hyper).
 
 ## Build
 Push to `main` → GitHub Actions builds `lily58_left` + `lily58_right` + `settings_reset` UF2 files.

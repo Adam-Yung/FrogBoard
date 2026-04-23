@@ -1,77 +1,57 @@
   /* ── Auto-close bracket macros ─────────────────────────────────── */
   macro_quotes: macro_quotes {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_QUOTES";
     #binding-cells = <0>;
     bindings = <&kp SQT>, <&kp SQT>, <&kp LEFT>;
-    display-name = "Auto ''";
   };
   macro_dquotes: macro_dquotes {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_DQUOTES";
     #binding-cells = <0>;
     bindings = <&kp DQT>, <&kp DQT>, <&kp LEFT>;
-    display-name = "Auto \"\"";
   };
   macro_braces: macro_braces {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_BRACES";
     #binding-cells = <0>;
     bindings = <&kp LBRC>, <&kp RBRC>, <&kp LEFT>;
-    display-name = "Auto {}";
   };
   macro_parens: macro_parens {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_PARENS";
     #binding-cells = <0>;
     bindings = <&kp LPAR>, <&kp RPAR>, <&kp LEFT>;
-    display-name = "Auto ()";
   };
   macro_brackets: macro_brackets {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_BRACKETS";
     #binding-cells = <0>;
     bindings = <&kp LBKT>, <&kp RBKT>, <&kp LEFT>;
-    display-name = "Auto []";
   };
   macro_angles: macro_angles {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_ANGLES";
     #binding-cells = <0>;
     bindings = <&kp LT>, <&kp GT>, <&kp LEFT>;
-    display-name = "Auto <>";
   };
   macro_backticks: macro_backticks {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_BACKTICKS";
     #binding-cells = <0>;
     bindings = <&kp GRAVE>, <&kp GRAVE>, <&kp LEFT>;
-    display-name = "Auto ``";
   };
   macro_triple_backtick: macro_triple_backtick {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_TRIPLE_BT";
     #binding-cells = <0>;
     bindings = <&kp GRAVE>, <&kp GRAVE>, <&kp GRAVE>, <&kp GRAVE>, <&kp GRAVE>, <&kp GRAVE>, <&kp LEFT>, <&kp LEFT>, <&kp LEFT>;
-    display-name = "Auto ``` ```";
   };
 
   /* ── Text editing macros ────────────────────────────────────────── */
   macro_sel_word: macro_sel_word {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_SEL_WORD";
     #binding-cells = <0>;
     /* move right 1 char, jump to word start, select to word end */
     bindings = <&kp RIGHT>, <&kp LA(LEFT)>, <&kp LA(LS(RIGHT))>;
-    display-name = "Select Word";
   };
   macro_sel_line: macro_sel_line {
     compatible = "zmk,behavior-macro";
-    label = "MACRO_SEL_LINE";
     #binding-cells = <0>;
     /* jump to line start, select to line end */
     bindings = <&kp LG(LEFT)>, <&kp LG(LS(RIGHT))>;
-    display-name = "Select Line";
   };
 
   /* ── Mac shortcuts ──────────────────────────────────────────────── */
@@ -79,97 +59,81 @@
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(X)>;
-    display-name = "Mac Cut";
   };
   Mac_Copy: Mac_Copy {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(C)>;
-    display-name = "Mac Copy";
   };
   Mac_Paste: Mac_Paste {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(V)>;
-    display-name = "Mac Paste";
   };
   Mac_Undo: Mac_Undo {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(Z)>;
-    display-name = "Mac Undo";
   };
   Mac_Redo: Mac_Redo {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(LS(Z))>;
-    display-name = "Mac Redo";
   };
   Mac_Select_All: Mac_SelAll {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(A)>;
-    display-name = "Mac Select All";
   };
   Mac_Find: Mac_Find {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(F)>;
-    display-name = "Mac Find";
   };
   Mac_Mission_Control: Mac_MissionCtrl {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LC(UP)>;
-    display-name = "Mission Control";
   };
   Mac_Spotlight_Search: Mac_Spotlight {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(SPACE)>;
-    display-name = "Spotlight";
   };
   Mac_Snip_Tool: Mac_Snip {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LC(LG(LS(N4)))>;
-    display-name = "Mac Snip";
   };
   Mac_Close_Program: Mac_Close {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(Q)>;
-    display-name = "Mac Close";
   };
   Mac_Strike_Through: Mac_Strike {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(LS(X))>;
-    display-name = "Mac Strike";
   };
   Mac_Lock: Mac_Lock {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LC(LG(Q))>;
-    display-name = "Mac Lock";
   };
   Mac_App_Switch: Mac_AppSwitch {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(TAB)>;
-    display-name = "App Switch";
   };
   Mac_Win_Left: Mac_WinLeft {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LC(LEFT)>;
-    display-name = "Mac Space Left";
   };
   Mac_Win_Right: Mac_WinRight {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LC(RIGHT)>;
-    display-name = "Mac Space Right";
   };
 
   /* ── Windows shortcuts (kept for dual-OS use) ───────────────────── */
@@ -177,37 +141,31 @@
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LC(X)>;
-    display-name = "Win Cut";
   };
   Win_Copy: Windows_Copy {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LC(C)>;
-    display-name = "Win Copy";
   };
   Win_Paste: Windows_Paste {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LC(V)>;
-    display-name = "Win Paste";
   };
   Win_Undo: Windows_Undo {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LC(Z)>;
-    display-name = "Win Undo";
   };
   Win_Desktop: Win_Desk {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LG(D)>;
-    display-name = "Win Desktop";
   };
   Win_Snip_Tool: Win_Snip {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LS(LG(S))>;
-    display-name = "Win Snip";
   };
 
   /* ── Mouse helpers ──────────────────────────────────────────────── */
@@ -215,5 +173,26 @@
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&mkp MB1>, <&mkp MB1>;
-    display-name = "Double Click";
+  };
+
+  /* ── Code digraph macros (used as SYM-layer combos) ─────────────── */
+  macro_eq_eq: macro_eq_eq {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp EQUAL>, <&kp EQUAL>;
+  };
+  macro_not_eq: macro_not_eq {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp EXCL>, <&kp EQUAL>;
+  };
+  macro_fat_arrow: macro_fat_arrow {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp EQUAL>, <&kp GT>;
+  };
+  macro_arrow: macro_arrow {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp MINUS>, <&kp GT>;
   };
