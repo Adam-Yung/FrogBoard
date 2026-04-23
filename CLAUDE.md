@@ -52,17 +52,17 @@ Left outer column is a **failsafe fallback** for modifiers. Primary modifier acc
 | Pos | Key | Tap | Hold |
 |-----|-----|-----|------|
 | 00  | row of `1` | `` ` `` (single) / `~` (double) | — |
-| 12  | row of `Q` | ` ` ` ` (two spaces) | ALT |
+| 12  | row of `Q` | — | ALT |
 | 24  | row of `A` | ESC | CTRL |
 | 36  | row of `Z` | LSFT | — |
 
 ### Right outer column (top → bottom)
-| Pos | Key | Tap | Double-tap | Hold |
-|-----|-----|-----|-----------|------|
-| 11  | row of `0` | `=` | `+` | — |
-| 23  | row of `P` | `-` | `_` | — |
-| 35  | row of `;` | `'` | `"` | — |
-| 49  | row of `/` | `\|` (pipe) | — | `\` (backslash) |
+| Pos | Key | Tap | Double-tap |
+|-----|-----|-----|-----------|
+| 11  | row of `0` | `=` | `+` |
+| 23  | row of `P` | `-` | `_` |
+| 35  | row of `;` | `'` | `"` |
+| 49  | row of `/` | `\|` (pipe) | `\` (backslash) |
 
 ## HRM Layer (layer 5)
 Activated by holding either middle thumb. Home row becomes modifiers — no timing issues.
@@ -147,8 +147,7 @@ Outer cols in SYM = &trans (fall through to BASE tap-dances: =+, -_, '", ())
 - `td_equal_plus` — tap==, double=+ (pos 11)
 - `td_minus_under` — tap=-, double=_ (pos 23)
 - `td_sqt_dqt` — tap=', double=" (pos 35)
-- `ht_twospace` — tap=two spaces, hold=kp param; used as `&ht_twospace LALT` (pos 12)
-- `mt BSLH PIPE` — hold=\\, tap=| (pos 49, inline `&mt`, no custom behavior)
+- `td_pipe_bslh` — tap=|, double=\\ (pos 49)
 
 ## Macros in macros.dtsi
 Auto-close: `macro_parens` `macro_braces` `macro_brackets` `macro_quotes` `macro_dquotes` `macro_backticks` `macro_angles` `macro_triple_backtick`

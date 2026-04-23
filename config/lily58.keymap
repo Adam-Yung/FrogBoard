@@ -24,8 +24,8 @@
  *   Hold (left→right): SYM · HRM · NAV | NAV  · HRM · SYM
  *
  * ── Outer column keys (BASE) ──────────────────────────────────────
- *   LEFT  (top→bot): td(`~) · ht(··/ALT) · mt(CTL,ESC) · LSFT
- *   RIGHT (top→bot): td(=+) · td(-_)     · td('")       · mt(BSLH,PIPE)
+ *   LEFT  (top→bot): td(`~) · LALT       · mt(CTL,ESC) · LSFT
+ *   RIGHT (top→bot): td(=+) · td(-_)     · td('")       · td(|\\)
  *
  *   Left outer col is a failsafe for modifiers (ALT/CTRL/SHIFT) —
  *   primary modifier access is via the HRM thumb layer.
@@ -87,18 +87,12 @@
             bindings = <&kp SQT>, <&kp DQT>;
         };
 
-        /* ── Hold-tap: pos 12 (row-of-Q outer left) ────────────────
-         * tap = two spaces (sentence/code continuation without TAB)
-         * hold = ALT (Option on Mac)
-         * Differentiates from the HRM/TAB thumb which gives single TAB.
-         * #binding-cells=<1>: hold side (&kp) needs the MOD param;
-         * tap side (&macro_two_spaces) is fixed at 0 cells.          */
-        ht_twospace: ht_twospace {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <1>;
-            flavor = "tap-preferred";
+        /* pos 49 — tap = |   double-tap = \                          */
+        td_pipe_bslh: td_pipe_bslh {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_two_spaces>;
+            bindings = <&kp PIPE>, <&kp BSLH>;
         };
     };
 
@@ -169,28 +163,25 @@
          * LAYER 0 · BASE
          *
          * Left outer col (failsafe modifiers, top→bot):
-         *   td(`~) · ht(··/ALT) · mt(CTRL,ESC) · LSFT
-         *   ·· = two spaces on tap; differentiates from TAB thumb
+         *   td(`~) · LALT · mt(CTRL,ESC) · LSFT
          *
          * Right outer col (top→bot):
-         *   td(=+) · td(-_) · td('") · mt(BSLH,PIPE)
-         *   hold backslash, tap pipe — frees SYM layer for _ and +
+         *   td(=+) · td(-_) · td('") · td(|\)
+         *   tap pipe, double-tap backslash
          *
          * ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
          * │ `~ ↕   │  1   │  2   │  3   │  4   │  5   │ │  6   │  7   │  8   │  9   │  0   │ =+ ↕   │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-         * │ALT/··  │  Q   │  W   │  E   │  R   │  T   │ │  Y   │  U   │  I   │  O   │  P   │ -_ ↕   │
+         * │  LALT  │  Q   │  W   │  E   │  R   │  T   │ │  Y   │  U   │  I   │  O   │  P   │ -_ ↕   │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
          * │CTL/ESC │  A   │  S   │  D   │  F   │  G   │ │  H   │  J   │  K   │  L   │  ;   │ '" ↕   │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-         * │  LSFT  │  Z   │  X   │  C   │  V   │  B   │ │  N   │  M   │  ,   │  .   │  /   │ \|     │
+         * │  LSFT  │  Z   │  X   │  C   │  V   │  B   │ │  N   │  M   │  ,   │  .   │  /   │ |\ ↕   │
          * ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
          *                        │SYM/↵ │HRM/⇥ │NAV/␣ │ │NAV/⌫ │ nop  │SYM/⌦ │
          *                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
          *
          * ↕ = tap-dance (single-tap / double-tap)
-         * \| = hold=\  tap=|
-         * ·· = two-spaces on tap
          *
          * Combos:
          *   52+55 (both NAV) → FN layer
@@ -200,9 +191,9 @@
             display-name = "base";
             bindings = <
 &td_grave_tilde    &kp N1   &kp N2   &kp N3   &kp N4   &kp N5                     &kp N6   &kp N7   &kp N8    &kp N9   &kp N0    &td_equal_plus
-&ht_twospace LALT  &kp Q    &kp W    &kp E    &kp R    &kp T                      &kp Y    &kp U    &kp I     &kp O    &kp P     &td_minus_under
+&kp LALT           &kp Q    &kp W    &kp E    &kp R    &kp T                      &kp Y    &kp U    &kp I     &kp O    &kp P     &td_minus_under
 &mt LCTL ESC       &kp A    &kp S    &kp D    &kp F    &kp G                      &kp H    &kp J    &kp K     &kp L    &kp SEMI  &td_sqt_dqt
-&kp LSFT           &kp Z    &kp X    &kp C    &kp V    &kp B    &none    &none    &kp N    &kp M    &kp COMMA &kp DOT  &kp FSLH  &mt BSLH PIPE
+&kp LSFT           &kp Z    &kp X    &kp C    &kp V    &kp B    &none    &none    &kp N    &kp M    &kp COMMA &kp DOT  &kp FSLH  &td_pipe_bslh
                                      &lt SYM ENT  &lt HRM TAB  &lt NAV SPACE  &none  &none  &lt NAV BSPC  &mo HRM  &lt SYM DEL
             >;
         };

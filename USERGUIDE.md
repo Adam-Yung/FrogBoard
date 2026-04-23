@@ -79,7 +79,7 @@ Clean QWERTY. No home-row mods. The outer columns carry utility keys so your fin
 
 **Left outer column (failsafe modifiers — primary access is via HRM layer):**
 - `` ` `` / `~` — single tap / double tap
-- `ALT / ··` — hold for Alt/Option, tap for **two spaces** (differentiates from the TAB on the HRM thumb; useful for sentence spacing or indenting in certain contexts)
+- `LALT` — pure Alt/Option key (no hold-tap, no timing ambiguity)
 - `CTRL / ESC` — hold for Ctrl, tap for Escape (critical vim/terminal key, right next to the QWERTY row)
 - `LSFT` — dedicated Shift key next to Z
 
@@ -87,7 +87,7 @@ Clean QWERTY. No home-row mods. The outer columns carry utility keys so your fin
 - `=` / `+` — single tap / double tap
 - `-` / `_` — single tap / double tap
 - `'` / `"` — single tap / double tap
-- `|` / `\` — tap for pipe, hold for backslash (common in shell pipelines and paths)
+- `|` / `\` — single tap / double tap (pipe for shell pipelines; backslash for escape chars and Windows paths)
 
 ### Combos (BASE layer only)
 | Press | Result |
@@ -380,7 +380,7 @@ Hold **both** left middle thumb (HRM) and left inner thumb (NAV) simultaneously:
 - Learn HRM last — once you reach for modifiers constantly, HRM feels faster than physical modifier keys
 
 **The outer column hold-taps:**
-- `ALT/TAB` (pos 12): quick tap = Tab, firm hold = Alt. Deliberate and distinct.
+- `LALT` (pos 12): pure Alt/Option key — no timing involved, fires immediately.
 - `CTRL/ESC` (pos 24): quick tap = ESC (vim mode exit), firm hold = Ctrl. The most-used key on the board for developers.
 
 **Shift:**
