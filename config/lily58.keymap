@@ -324,7 +324,7 @@
 &kp F1       &kp F2        &kp F3               &kp F4                &kp F5         &kp F6                       &kp F7          &kp F8        &kp F9         &kp F10          &kp F11       &kp F12
 &kp C_BRI_DN &kp C_BRI_UP  &Mac_Mission_Control &Mac_Spotlight_Search &Mac_Snip_Tool &Mac_App_Switch              &kp C_PREV      &kp C_PP      &kp C_NEXT     &kp C_MUTE       &kp C_VOL_DN  &kp C_VOL_UP
 &bt BT_SEL 0 &bt BT_SEL 1  &bt BT_SEL 2         &bt BT_SEL 3          &bt BT_SEL 4   &trans                       &mmv MOVE_LEFT  &mmv MOVE_DOWN &mmv MOVE_UP  &mmv MOVE_RIGHT  &studio_unlock &trans
-&out OUT_TOG &sys_reset    &bootloader          &Mac_Lock             &Mac_Win_Left  &bt BT_CLR   &none   &none   &mkp LCLK       &mkp RCLK     &mkp MB3       &msc SCRL_UP     &msc SCRL_DN  &kp CAPS
+&out OUT_TOG &sys_reset    &bootloader          &Mac_Lock             &Mac_Win_Left  &bt BT_CLR   &none   &none   &mkp LCLK       &mkp RCLK     &mkp MB3       &msc SCRL_UP     &msc SCRL_DOWN  &kp CAPS
                                                 &trans                &trans         &trans   &none   &none   &trans          &trans        &trans
             >;
         };
