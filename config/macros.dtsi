@@ -41,6 +41,7 @@
   };
 
   /* ── Text editing macros ────────────────────────────────────────── */
+  /* Mac: Option+arrow for word boundaries, Cmd+arrow for line        */
   macro_sel_word: macro_sel_word {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -52,6 +53,19 @@
     #binding-cells = <0>;
     /* jump to line start, select to line end */
     bindings = <&kp LG(LEFT)>, <&kp LG(LS(RIGHT))>;
+  };
+  /* Windows: Ctrl+arrow for word boundaries, Home/End for line       */
+  macro_sel_word_win: macro_sel_word_win {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    /* move right 1 char, jump to word start, select to word end */
+    bindings = <&kp RIGHT>, <&kp LC(LEFT)>, <&kp LC(LS(RIGHT))>;
+  };
+  macro_sel_line_win: macro_sel_line_win {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    /* jump to line start, select to line end */
+    bindings = <&kp HOME>, <&kp LS(END)>;
   };
 
   /* ── Mac shortcuts ──────────────────────────────────────────────── */
@@ -103,7 +117,7 @@
   Mac_Snip_Tool: Mac_Snip {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
-    bindings = <&kp LC(LG(LS(N4)))>;
+    bindings = <&kp LS(LG(S))>;
   };
   Mac_Close_Program: Mac_Close {
     compatible = "zmk,behavior-macro";
@@ -136,7 +150,7 @@
     bindings = <&kp LC(RIGHT)>;
   };
 
-  /* ── Windows shortcuts (kept for dual-OS use) ───────────────────── */
+  /* ── Windows shortcuts ──────────────────────────────────────────── */
   Win_Cut: Windows_Cut {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -166,6 +180,42 @@
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <&kp LS(LG(S))>;
+  };
+  Win_Redo: Windows_Redo {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp LC(Y)>;
+  };
+  Win_Lock: Windows_Lock {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp LG(L)>;
+  };
+  Win_Task_View: Win_TaskView {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp LG(TAB)>;
+  };
+  Win_App_Switch: Win_AppSwitch {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp LA(TAB)>;
+  };
+  Win_Desk_Left: Win_DeskLeft {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp LG(LC(LEFT))>;
+  };
+  Win_Desk_Right: Win_DeskRight {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp LG(LC(RIGHT))>;
+  };
+  Win_Spotlight: Win_Spotlight {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    /* Win+Return — opens Android / assistant on Windows */
+    bindings = <&kp LG(RET)>;
   };
 
   /* ── Mouse helpers ──────────────────────────────────────────────── */

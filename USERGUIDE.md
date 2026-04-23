@@ -99,11 +99,25 @@ Clean QWERTY. No home-row mods. The outer columns carry utility keys so your fin
 
 ---
 
+## OS Mode (Windows / Mac toggle)
+
+The keyboard defaults to **Windows** shortcuts. Press **FN + right middle thumb (pos 56)** to toggle Mac mode on/off. The display shows **"mac"** in the base layer when Mac mode is active.
+
+| Mode | Word nav | Delete word | Edit shortcuts | System keys |
+|------|----------|-------------|----------------|-------------|
+| Windows (default) | Ctrl+arrow | Ctrl+⌫/⌦ | Ctrl+Z/Y/A/X/C/V/F | Win+L lock, Win+Tab task view |
+| Mac (toggle) | Option+arrow | Opt+⌫/⌦ | ⌘Z/⇧Z/A/X/C/V/F | ⌃⌘Q lock, Ctrl+Up mission ctrl |
+
+**Note on Mac line/doc navigation:** Home/End for line start/end and Ctrl+Home/End for document start/end work reliably in VS Code, Terminal, and most code editors. Native Mac apps (Notes, Safari) may behave differently.
+
+---
+
 ## NAV Layer
 
 **Activate:** hold left inner thumb (SPC key) or right inner thumb (BSPC key).
 
 Navigation for keyboard-centric power users. Right hand moves the cursor, left hand edits.
+Shortcuts adapt automatically to OS mode (see above).
 
 ```
 ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
@@ -111,34 +125,34 @@ Navigation for keyboard-centric power users. Right hand moves the cursor, left h
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │        │ ⇧↵   │SelWrd│SelLn │ Redo │      │ │      │ PgUp │ PgDn │      │      │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│        │SelAll│ Undo │[JUMP]│ LSFT │      │ │  ←   │  ↓   │  ↑   │  →   │      │        │
+│        │SelAll│ Undo │[JUMP]│ LSFT │      │ │  ←   │  ↓   │  ↑   │  →   │ Find │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│        │      │ Cut  │ Copy │Paste │      │ │      │      │ ⌘↑   │ ⌘↓   │      │        │
+│        │      │ Cut  │ Copy │Paste │      │ │      │      │^Home │^End  │      │        │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │      │ LSFT │[NAV] │ │  ⌥⌫  │ nop  │  ⌥⌦  │
+                       │      │ LSFT │[NAV] │ │ ^/⌥⌫ │ nop  │ ^/⌥⌦ │
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
 ```
 
 ### Key reference
 
-| Key | Action |
-|-----|--------|
-| H / J / K / L | ← / ↓ / ↑ / → |
-| U / I | Page Up / Page Down |
-| ; | Find (⌘F) |
-| , / . | Ctrl+Home / Ctrl+End (document top / bottom — portable across Mac, Linux, Windows, VS Code) |
-| A | Select All (⌘A) |
-| S | Undo (⌘Z) |
-| D | **JUMP mode** — hold to activate word/line navigation (see below) |
-| F | Left Shift — hold this while pressing arrows to select text |
-| Q | Shift + Enter |
-| W | Select current word |
-| E | Select current line |
-| R | Redo (⌘⇧Z) |
-| X / C / V | Cut / Copy / Paste |
-| Right inner thumb (55) | ⌥⌫ — delete word backwards |
-| Right outer thumb (57) | ⌥⌦ — delete word forwards |
-| Left middle thumb (51) | Left Shift (for selection without holding F) |
+| Key | Windows | Mac |
+|-----|---------|-----|
+| H / J / K / L | ← / ↓ / ↑ / → | same |
+| U / I | Page Up / Page Down | same |
+| ; | Find (Ctrl+F) | Find (⌘F) |
+| , / . | Ctrl+Home / Ctrl+End (doc start/end) | same |
+| A | Select All (Ctrl+A) | Select All (⌘A) |
+| S | Undo (Ctrl+Z) | Undo (⌘Z) |
+| R | Redo (Ctrl+Y) | Redo (⌘⇧Z) |
+| D | **JUMP mode** — hold to activate word/line navigation | same |
+| F | Left Shift — hold while pressing arrows to select text | same |
+| Q | Shift + Enter | same |
+| W | Select current word | same (different word-boundary keys) |
+| E | Select current line | same |
+| X / C / V | Cut / Copy / Paste (Ctrl) | Cut / Copy / Paste (⌘) |
+| Right inner thumb (55) | Ctrl+⌫ — delete word backwards | Opt+⌫ |
+| Right outer thumb (57) | Ctrl+⌦ — delete word forwards | Opt+⌦ |
+| Left middle thumb (51) | Left Shift (for selection without holding F) | same |
 
 ### Shift-select in NAV
 Hold **F** (LSFT) while pressing arrow keys to select text character by character, line by line, or page by page.
@@ -151,28 +165,29 @@ Example: `NAV + F + L` = Shift+Right = select one character to the right.
 
 **Activate:** hold NAV thumb, then also hold **D**.
 
-HJKL jump to word and line boundaries instead of moving character by character.
+HJKL jump to word and line boundaries instead of moving character by character. Word navigation adapts to OS mode automatically.
 
 ```
-H = ⌥←  word back        L = ⌥→  word forward
-J = ⌘←  line start       K = ⌘→  line end
+Windows:  H = Ctrl+←  word back     L = Ctrl+→  word forward
+Mac:      H = Opt+←   word back     L = Opt+→   word forward
+Both:     J = Home    line start    K = End     line end
 ```
 
-Thumb keys fall through to NAV: right inner = ⌥⌫, right outer = ⌥⌦.
+Thumb keys fall through to NAV: right inner = word-delete-back, right outer = word-delete-fwd.
 
 ### Selection in JUMP mode
 Hold **D + F** (both home-row left hand) + navigate to select by word/line:
 
-| Chord | Action | Portability |
-|-------|--------|------------|
-| NAV + D + H | Ctrl+← (word back) | Linux/Win/VS Code ✓ · Mac native apps use Opt+← |
-| NAV + D + L | Ctrl+→ (word forward) | same note |
-| NAV + D + J | Home (line start) | All platforms ✓ |
-| NAV + D + K | End (line end) | All platforms ✓ |
-| NAV + D + F + H | Select word left | platform-dependent |
-| NAV + D + F + L | Select word right | platform-dependent |
-| NAV + D + F + J | Select to line start | All platforms ✓ |
-| NAV + D + F + K | Select to line end | All platforms ✓ |
+| Chord | Action | Notes |
+|-------|--------|-------|
+| NAV + D + H | word back | Ctrl+← Win / Opt+← Mac |
+| NAV + D + L | word forward | Ctrl+→ Win / Opt+→ Mac |
+| NAV + D + J | Home (line start) | All platforms |
+| NAV + D + K | End (line end) | All platforms |
+| NAV + D + F + H | select word left | word-boundary aware |
+| NAV + D + F + L | select word right | word-boundary aware |
+| NAV + D + F + J | select to line start | All platforms |
+| NAV + D + F + K | select to line end | All platforms |
 
 For document start/end, use **NAV layer** `,`/`.` = Ctrl+Home / Ctrl+End (not JUMP mode).
 
@@ -293,38 +308,43 @@ Hold **both** left middle thumb (HRM) and left inner thumb (NAV) simultaneously:
 
 **Activate:** press both NAV inner thumbs simultaneously (positions 52+55).
 
+System shortcuts adapt to OS mode. Windows default shown; Mac overrides in parentheses.
+
 ```
 ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
 │   F1   │  F2  │  F3  │  F4  │  F5  │  F6  │ │  F7  │  F8  │  F9  │ F10  │ F11  │  F12   │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│ Brt-   │ Brt+ │MsnCtl│Sptlgt│ Snip │AppSwt│ │ |◀◀  │ ▶/▮▮ │ ▶▶|  │  🔇  │ Vol- │  Vol+  │
+│ Brt-   │ Brt+ │AppSwt│Search│ Snip │TskVw │ │ |◀◀  │ ▶/▮▮ │ ▶▶|  │  🔇  │ Vol- │  Vol+  │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │      │ │ 🖱←   │ 🖱↓   │ 🖱↑   │ 🖱→   │Studio│        │
+│  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │Stdio │ │ 🖱←   │ 🖱↓   │ 🖱↑   │ 🖱→   │DblClk│DskRt │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│ OutTog │Reset │ Boot │MacLck│SpcLft│BTClr │ │ 🖱L   │ 🖱R   │ 🖱M   │ ScUp │ ScDn │  CAPS  │
+│ OutTog │Reset │Boot⌛│ Lock │DskLft│BTClr │ │ 🖱L   │ 🖱R   │ 🖱M   │ ScUp │ ScDn │CapsWrd │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │      │      │      │ │      │      │      │
+                       │      │      │      │ │      │ MAC  │      │
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
 ```
 
-| Key | Action |
-|-----|--------|
-| BT0–BT4 | Switch to Bluetooth profile 1–5 |
-| BTClr | Clear current BT pairing — placed on B (7 keys from BT4) to avoid accidents |
-| OutTog | Toggle between USB and BLE output |
-| Studio | Unlock ZMK Studio (USB only — real-time keymap editing without reflash) |
-| Reset | Soft reset the controller |
-| Boot | Enter DFU bootloader mode (for flashing firmware) |
-| MacLck | ⌘^Q — lock screen |
-| SpcLft | macOS Mission Control: move left between Spaces |
-| MsnCtl | Mission Control overview |
-| Sptlgt | Spotlight Search |
-| Snip | Screenshot tool (⌃⇧⌘4) |
-| AppSwt | App Switcher (⌘Tab) |
-| 🖱←↓↑→ | Mouse movement (HJKL = vim-style, row of home row) |
-| 🖱L / 🖱R / 🖱M | Left / Right / Middle click |
-| ScUp / ScDn | Scroll wheel up / down |
-| CAPS | Caps Lock |
+| Key | Windows | Mac |
+|-----|---------|-----|
+| BT0–BT4 | Switch to Bluetooth profile 1–5 | same |
+| BTClr | Clear current BT pairing (placed far from BT4 to avoid accidents) | same |
+| OutTog | Toggle between USB and BLE output | same |
+| Studio | Unlock ZMK Studio (USB only — real-time keymap editing, pos 29 inner-G) | same |
+| Reset | Soft reset the controller | same |
+| Boot⌛ | Enter DFU bootloader — **hold for 2 seconds** (tap does nothing) | same |
+| AppSwt | App Switcher | Alt+Tab | ⌘Tab |
+| Search | Quick launch / assistant | Win+Return | ⌘Space (Spotlight) |
+| Snip | Screenshot / snip tool | Win+Shift+S | ⌃⇧⌘4 |
+| TskVw | Window overview | Win+Tab (Task View) | ⌃↑ (Mission Control) |
+| Lock | Lock screen | Win+L | ⌃⌘Q |
+| DskLft | Move to left virtual desktop / Space | Win+Ctrl+← | Ctrl+← |
+| DskRt | Move to right virtual desktop / Space | Win+Ctrl+→ | Ctrl+→ |
+| DblClk | Double mouse click | same |
+| MAC | Toggle Windows ↔ Mac OS mode (right middle thumb in FN) | same |
+| 🖱←↓↑→ | Mouse movement (HJKL home-row positions) | same |
+| 🖱L / 🖱R / 🖱M | Left / Right / Middle click | same |
+| ScUp / ScDn | Scroll wheel up / down | same |
+| CapsWrd | Caps Word — type ONE_WORD in caps, auto-cancels on space/enter | same |
 
 ---
 

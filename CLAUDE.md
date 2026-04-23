@@ -26,14 +26,18 @@ Thumb:  50 51 52 ×            |    × 55 56 57
 `×` = positions 42, 43, 53, 54 → `&none` (not present on Silakka54)
 
 ## Layer Stack
-| # | Name | Activation |
-|---|------|------------|
-| 0 | BASE | default |
-| 1 | NAV  | hold left inner thumb (52) or right inner thumb (55) |
-| 2 | SYM  | hold left outer thumb (50) or right outer thumb (57) |
-| 3 | FN   | both NAV thumbs simultaneously (52+55 combo), OR tri-layer NAV+SYM |
-| 4 | JUMP | NAV active + hold D key (27) — word/line-level navigation |
-| 5 | HRM  | hold left middle thumb (51) or right middle thumb (56) |
+| # | Name     | Activation |
+|---|----------|------------|
+| 0 | BASE     | default |
+| 1 | NAV      | hold left inner thumb (52) or right inner thumb (55) |
+| 2 | SYM      | hold left outer thumb (50) or right outer thumb (57) |
+| 3 | FN       | both NAV thumbs simultaneously (52+55 combo) |
+| 4 | JUMP     | NAV active + hold D key (27) — word/line-level navigation |
+| 5 | HRM      | hold left middle thumb (51) or right middle thumb (56) |
+| 6 | MAC_MODE | `&tog MAC_MODE` at FN pos 56 — persistent OS mode flag (all &trans) |
+| 7 | NAV_MAC  | conditional: NAV + MAC_MODE active → Mac NAV shortcuts |
+| 8 | JUMP_MAC | conditional: JUMP + MAC_MODE active → Option+arrow word nav |
+| 9 | FN_MAC   | conditional: FN + MAC_MODE active → Mac system shortcuts |
 
 ## Thumb Cluster
 ```
@@ -74,29 +78,57 @@ J = RSFT   K = RGUI   L = RALT   ; = RCTL   (right hand)
 - Hold HRM + LSFT(F), then type → shift+key
 - Hold HRM + NAV simultaneously → modifier+arrow navigation
 
-## NAV Layer (layer 1)
-**Right hand — movement:**
+## OS Mode (layers 6–9)
+Default = **Windows / portable** (Ctrl shortcuts, Ctrl+arrow word nav).
+Toggle = `FN + pos56` (right middle thumb in FN layer) → `&tog MAC_MODE`.
+Display shows "mac" in base layer when Mac mode is active.
+
+`MAC_MODE` (layer 6) is an empty flag. When active, `conditional_layers` fires:
+- NAV + MAC_MODE → **NAV_MAC** (layer 7): Cmd shortcuts, Option+Del
+- JUMP + MAC_MODE → **JUMP_MAC** (layer 8): Option+arrow word nav
+- FN + MAC_MODE → **FN_MAC** (layer 9): Mac system shortcuts
+
+**Mac nav caveats:** Home/End for line nav and Ctrl+Home/End for doc nav work
+in VS Code and most terminals; native Mac apps may use Cmd+arrow instead.
+
+## NAV Layer (layer 1) — Windows default
+**Right hand — movement (same on both OS):**
 - `H/J/K/L` = ←/↓/↑/→ (vim arrows, home row)
 - `U/I` = PgUp / PgDn
-- `;` = Find (⌘F / Ctrl+F)
-- `,`/`.` = Ctrl+Home / Ctrl+End (doc top/bottom — portable Mac/Linux/Windows)
+- `;` = Find (Ctrl+F / ⌘F via Mac overlay)
+- `,`/`.` = Ctrl+Home / Ctrl+End (doc top/bottom — works in VS Code on both OS)
 
-**Left hand — editing:**
+**Left hand — editing (Windows default; Mac overlay in NAV_MAC):**
 - `A` = Select All  `S` = Undo  `D` = [JUMP mode]  `F` = LSFT (shift-select)
 - `Q` = Shift+Enter  `W` = Select Word  `E` = Select Line  `R` = Redo
 - `X` = Cut  `C` = Copy  `V` = Paste
 
+| Action | Windows (NAV) | Mac (NAV_MAC overlay) |
+|--------|--------------|----------------------|
+| Select All | Ctrl+A | ⌘A |
+| Undo | Ctrl+Z | ⌘Z |
+| Redo | Ctrl+Y | ⌘⇧Z |
+| Cut/Copy/Paste | Ctrl+X/C/V | ⌘X/C/V |
+| Find | Ctrl+F | ⌘F |
+| SelectWord | Ctrl+arrow seq | Option+arrow seq |
+| SelectLine | Home+Shift+End | ⌘Left+⌘⇧Right |
+| Del word back (55) | Ctrl+⌫ | Option+⌫ |
+| Del word fwd (57) | Ctrl+⌦ | Option+⌦ |
+
 **Thumb in NAV:**
-- Left middle (51) = LSFT
-- Right inner (55) = ⌥⌫ (delete word back)
-- Right outer (57) = ⌥⌦ (delete word forward)
+- Left middle (51) = LSFT (shift-select)
+- Right inner (55) = delete word back (Ctrl+⌫ Win / Opt+⌫ Mac)
+- Right outer (57) = delete word forward (Ctrl+⌦ Win / Opt+⌦ Mac)
 
 ## JUMP Mode (layer 4 — NAV + hold D)
-HJKL become word/line jumps (portable across platforms):
-- `H` = Ctrl+← (word back — note: Mac apps use Option+←; VS Code is consistent)
-- `L` = Ctrl+→ (word forward — same note)
-- `J` = Home (line start — portable everywhere)
-- `K` = End (line end — portable everywhere)
+HJKL become word/line jumps:
+
+| Key | Windows (JUMP) | Mac (JUMP_MAC overlay) |
+|-----|---------------|----------------------|
+| H | Ctrl+← (word back) | Option+← (word back) |
+| L | Ctrl+→ (word forward) | Option+→ (word forward) |
+| J | Home (line start) | Home (line start) |
+| K | End (line end) | End (line end) |
 
 Doc start/end: use NAV `,`/`.` = Ctrl+Home / Ctrl+End (not JUMP).
 
@@ -151,16 +183,18 @@ Outer cols in SYM = &trans (fall through to BASE tap-dances: =+, -_, '", ())
 
 ## Macros in macros.dtsi
 Auto-close: `macro_parens` `macro_braces` `macro_brackets` `macro_quotes` `macro_dquotes` `macro_backticks` `macro_angles` `macro_triple_backtick`
-Edit: `macro_sel_word` `macro_sel_line`
+Edit (Mac): `macro_sel_word` `macro_sel_line`
+Edit (Win): `macro_sel_word_win` `macro_sel_line_win`
 Mac: `Mac_Cut/Copy/Paste/Undo/Redo/Select_All/Find/Mission_Control/Spotlight_Search/Snip_Tool/Close_Program/Strike_Through/Lock/App_Switch/Win_Left/Win_Right`
-Win: `Win_Cut/Copy/Paste/Undo/Desktop/Snip_Tool`
+Win: `Win_Cut/Copy/Paste/Undo/Redo/Desktop/Snip_Tool/Lock/Task_View/App_Switch/Desk_Left/Desk_Right/Spotlight`
 Mouse: `Double_Click`
 
 ## Display Widgets (nice!view)
 Three regions on screen:
 - **Top**: Battery % bar + WPM graph + USB/BLE indicator
 - **Middle**: 5 Bluetooth profile circles (solid=connected, dashed=paired, filled=selected)
-- **Bottom**: Active layer name (base / nav / sym / fn / jump / hrm)
+- **Bottom**: Active layer name (base / nav / sym / fn / jump / hrm / **mac** / nav-mac / jmp-mac / fn-mac)
+  - "mac" shows in base when MAC_MODE toggle is on — visual OS mode indicator
 
 ## File Layout
 ```
@@ -186,4 +220,4 @@ USERGUIDE.md      — Human-readable keyboard usage guide
 ## Build
 Push to `main` → GitHub Actions builds `lily58_left` + `lily58_right` + `settings_reset` UF2 files.
 Flash: double-tap reset → copy `.uf2` to mounted drive → repeat for other half.
-ZMK Studio: USB, press `studio_unlock` key (FN layer, right outer col row 2).
+ZMK Studio: USB, press `studio_unlock` key (FN layer, pos 29 — inner col row 2 left, G key position).
