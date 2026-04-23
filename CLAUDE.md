@@ -37,10 +37,10 @@ Thumb:  50 51 52 ×            |    × 55 56 57
 
 ## Thumb Cluster
 ```
-Left  (outer → inner): 50=SYM/ENT  51=HRM/TAB  52=NAV/SPC
+Left  (outer → inner): 50=SYM/RET  51=HRM/TAB  52=NAV/SPC
 Right (inner → outer): 55=NAV/BSPC 56=HRM/nop  57=SYM/DEL
 
-Tap actions  (left → right): ENT · TAB · SPC | BSPC · nop · DEL
+Tap actions  (left → right): RET · TAB · SPC | BSPC · nop · DEL
 Hold actions (left → right): SYM · HRM · NAV | NAV  · HRM · SYM
 ```
 

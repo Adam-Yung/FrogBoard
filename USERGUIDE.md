@@ -40,7 +40,7 @@ This layout is designed for **fast, precise typists** who want:
 The six thumb keys are the heart of the keyboard. Left to right:
 
 ```
-[ENT/SYM] [TAB/HRM] [SPC/NAV]  |  [BSPC/NAV] [nop/HRM] [DEL/SYM]
+[RET/SYM] [TAB/HRM] [SPC/NAV]  |  [BSPC/NAV] [nop/HRM] [DEL/SYM]
 ```
 
 | Key | Tap | Hold |
@@ -182,7 +182,7 @@ For document start/end, use **NAV layer** `,`/`.` = Ctrl+Home / Ctrl+End (not JU
 
 ## SYM Layer
 
-**Activate:** hold left outer thumb (ENT key) or right outer thumb (DEL key).
+**Activate:** hold left outer thumb (RET key) or right outer thumb (DEL key).
 
 Designed for symmetry: **same finger on both hands = opening and closing of the same bracket type.** Auto-close macros are on row 3, directly below their matching single characters on row 2.
 
@@ -389,7 +389,7 @@ Hold **both** left middle thumb (HRM) and left inner thumb (NAV) simultaneously:
 - For a whole capital word: use Caps Word if re-enabled, or hold Shift while typing
 
 **Hyper key:**
-- Press both SYM outer thumbs (ENT thumb + DEL thumb) simultaneously
+- Press both SYM outer thumbs (RET thumb + DEL thumb) simultaneously
 - This activates a **sticky** Hyper modifier: release the thumbs, then tap your target key → Hyper+key fires
 - Or: keep holding the thumbs, tap the target key while both are held — same result
 - Assign ⌘^⌥⇧ combinations in Raycast, BetterTouchTool, or Keyboard Maestro
