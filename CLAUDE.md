@@ -46,21 +46,23 @@ Hold actions (left → right): SYM · HRM · NAV | NAV  · HRM · SYM
 
 ## Outer Column Keys (BASE layer)
 
+Left outer column is a **failsafe fallback** for modifiers. Primary modifier access is via HRM layer.
+
 ### Left outer column (top → bottom)
 | Pos | Key | Tap | Hold |
 |-----|-----|-----|------|
 | 00  | row of `1` | `` ` `` (single) / `~` (double) | — |
-| 12  | row of `Q` | TAB | ALT |
+| 12  | row of `Q` | ` ` ` ` (two spaces) | ALT |
 | 24  | row of `A` | ESC | CTRL |
 | 36  | row of `Z` | LSFT | — |
 
 ### Right outer column (top → bottom)
-| Pos | Key | Tap | Double-tap | Long-hold |
-|-----|-----|-----|-----------|-----------|
+| Pos | Key | Tap | Double-tap | Hold |
+|-----|-----|-----|-----------|------|
 | 11  | row of `0` | `=` | `+` | — |
 | 23  | row of `P` | `-` | `_` | — |
-| 35  | row of `;` | `'` | `"` | Hyper (⌘^⌥⇧) |
-| 49  | row of `/` | `(` | `)` | — |
+| 35  | row of `;` | `'` | `"` | — |
+| 49  | row of `/` | `\|` (pipe) | — | `\` (backslash) |
 
 ## HRM Layer (layer 5)
 Activated by holding either middle thumb. Home row becomes modifiers — no timing issues.
@@ -76,7 +78,8 @@ J = RSFT   K = RGUI   L = RALT   ; = RCTL   (right hand)
 **Right hand — movement:**
 - `H/J/K/L` = ←/↓/↑/→ (vim arrows, home row)
 - `U/I` = PgUp / PgDn
-- `,`/`.` = ⌘↑/⌘↓ (doc top / doc bottom)
+- `;` = Find (⌘F / Ctrl+F)
+- `,`/`.` = Ctrl+Home / Ctrl+End (doc top/bottom — portable Mac/Linux/Windows)
 
 **Left hand — editing:**
 - `A` = Select All  `S` = Undo  `D` = [JUMP mode]  `F` = LSFT (shift-select)
@@ -89,9 +92,13 @@ J = RSFT   K = RGUI   L = RALT   ; = RCTL   (right hand)
 - Right outer (57) = ⌥⌦ (delete word forward)
 
 ## JUMP Mode (layer 4 — NAV + hold D)
-HJKL become word/line jumps:
-- `H` = ⌥← (word back)  `L` = ⌥→ (word forward)
-- `J` = ⌘← (line start)  `K` = ⌘→ (line end)
+HJKL become word/line jumps (portable across platforms):
+- `H` = Ctrl+← (word back — note: Mac apps use Option+←; VS Code is consistent)
+- `L` = Ctrl+→ (word forward — same note)
+- `J` = Home (line start — portable everywhere)
+- `K` = End (line end — portable everywhere)
+
+Doc start/end: use NAV `,`/`.` = Ctrl+Home / Ctrl+End (not JUMP).
 
 Add F for shift-select:
 - `D+F+H/L` = select word  `D+F+J/K` = select to line start/end
@@ -128,18 +135,20 @@ Outer cols in SYM = &trans (fall through to BASE tap-dances: =+, -_, '", ())
 | Keys | Positions | Layers | Output |
 |------|-----------|--------|--------|
 | NAV+NAV | 52+55 | any | FN layer (momentary) |
-| SYM+SYM | 50+57 | any | Hyper ⌘^⌥⇧ |
+| SYM+SYM | 50+57 | any | Hyper sticky key ⌘^⌥⇧ (`&sk`) |
 | W+E | 14+15 | SYM | `!=` |
 | E+R | 15+16 | SYM | `==` |
 | U+I | 19+20 | SYM | `=>` |
 | I+O | 20+21 | SYM | `->` |
+| O+P | 21+22 | SYM | ` ``` ``` ` (triple backtick, cursor inside) |
 
 ## Behaviors Defined in lily58.keymap
 - `td_grave_tilde` — tap=\`, double=~ (pos 00)
 - `td_equal_plus` — tap==, double=+ (pos 11)
 - `td_minus_under` — tap=-, double=_ (pos 23)
 - `td_sqt_dqt` — tap=', double=" (pos 35)
-- `td_lpar_rpar` — tap=(, double=) (pos 49)
+- `ht_twospace` — tap=two spaces, hold=kp param; used as `&ht_twospace LALT` (pos 12)
+- `mt BSLH PIPE` — hold=\\, tap=| (pos 49, inline `&mt`, no custom behavior)
 
 ## Macros in macros.dtsi
 Auto-close: `macro_parens` `macro_braces` `macro_brackets` `macro_quotes` `macro_dquotes` `macro_backticks` `macro_angles` `macro_triple_backtick`

@@ -77,17 +77,17 @@ Clean QWERTY. No home-row mods. The outer columns carry utility keys so your fin
 
 ### Outer column details
 
-**Left outer column:**
-- `` ` `` / `~` — single tap / double tap (backtick is very common in shell and markdown)
-- `ALT / TAB` — hold for Alt (Option on Mac), tap for Tab
-- `CTRL / ESC` — hold for Ctrl, tap for Escape (the critical vim/terminal key, right next to the QWERTY row)
-- `LSFT` — dedicated Shift key, traditional position next to Z
+**Left outer column (failsafe modifiers — primary access is via HRM layer):**
+- `` ` `` / `~` — single tap / double tap
+- `ALT / ··` — hold for Alt/Option, tap for **two spaces** (differentiates from the TAB on the HRM thumb; useful for sentence spacing or indenting in certain contexts)
+- `CTRL / ESC` — hold for Ctrl, tap for Escape (critical vim/terminal key, right next to the QWERTY row)
+- `LSFT` — dedicated Shift key next to Z
 
 **Right outer column:**
 - `=` / `+` — single tap / double tap
 - `-` / `_` — single tap / double tap
-- `'` / `"` / **Hyper** — single tap / double tap / hold ≥ 400ms (Ctrl+Alt+GUI+Shift — assign to global shortcuts in Raycast or BetterTouchTool)
-- `(` / `)` — single tap / double tap
+- `'` / `"` — single tap / double tap
+- `|` / `\` — tap for pipe, hold for backslash (common in shell pipelines and paths)
 
 ### Combos (BASE layer only)
 | Press | Result |
@@ -125,7 +125,8 @@ Navigation for keyboard-centric power users. Right hand moves the cursor, left h
 |-----|--------|
 | H / J / K / L | ← / ↓ / ↑ / → |
 | U / I | Page Up / Page Down |
-| , / . | ⌘↑ / ⌘↓ (document top / bottom) |
+| ; | Find (⌘F) |
+| , / . | Ctrl+Home / Ctrl+End (document top / bottom — portable across Mac, Linux, Windows, VS Code) |
 | A | Select All (⌘A) |
 | S | Undo (⌘Z) |
 | D | **JUMP mode** — hold to activate word/line navigation (see below) |
@@ -162,18 +163,20 @@ Thumb keys fall through to NAV: right inner = ⌥⌫, right outer = ⌥⌦.
 ### Selection in JUMP mode
 Hold **D + F** (both home-row left hand) + navigate to select by word/line:
 
-| Chord | Action |
-|-------|--------|
-| NAV + D + H | Jump word left |
-| NAV + D + L | Jump word right |
-| NAV + D + J | Jump to line start |
-| NAV + D + K | Jump to line end |
-| NAV + D + F + H | Select word left |
-| NAV + D + F + L | Select word right |
-| NAV + D + F + J | Select to line start |
-| NAV + D + F + K | Select to line end |
+| Chord | Action | Portability |
+|-------|--------|------------|
+| NAV + D + H | Ctrl+← (word back) | Linux/Win/VS Code ✓ · Mac native apps use Opt+← |
+| NAV + D + L | Ctrl+→ (word forward) | same note |
+| NAV + D + J | Home (line start) | All platforms ✓ |
+| NAV + D + K | End (line end) | All platforms ✓ |
+| NAV + D + F + H | Select word left | platform-dependent |
+| NAV + D + F + L | Select word right | platform-dependent |
+| NAV + D + F + J | Select to line start | All platforms ✓ |
+| NAV + D + F + K | Select to line end | All platforms ✓ |
 
-**Ergonomics:** Left thumb holds NAV, left middle finger holds D, left index finger optionally holds F, right hand navigates. This is a comfortable three-finger hold on the left hand with the right hand free to navigate.
+For document start/end, use **NAV layer** `,`/`.` = Ctrl+Home / Ctrl+End (not JUMP mode).
+
+**Ergonomics:** Left thumb holds NAV, left middle finger holds D, left index finger optionally holds F, right hand navigates.
 
 ---
 
@@ -242,8 +245,9 @@ Hold SYM thumb, then press two adjacent keys simultaneously:
 | E + R | middle + index | `==` |
 | U + I | index + middle | `=>` |
 | I + O | middle + ring | `->` |
+| O + P | ring + pinky | ` ``` ``` ` (triple backtick, cursor inside) |
 
-These are symmetric: left-side combos produce equality operators, right-side combos produce arrow operators. Adjacent-finger combos (different fingers pressing neighboring keys) are comfortable and fast.
+Symmetric: left-side combos produce equality operators, right-side combos produce arrow operators. Adjacent-finger combos are comfortable and fast.
 
 ---
 
@@ -287,7 +291,7 @@ Hold **both** left middle thumb (HRM) and left inner thumb (NAV) simultaneously:
 
 ## FN Layer
 
-**Activate:** press both NAV inner thumbs simultaneously (the two innermost thumb keys), OR hold NAV + SYM thumbs (tri-layer fallback).
+**Activate:** press both NAV inner thumbs simultaneously (positions 52+55).
 
 ```
 ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
@@ -295,9 +299,9 @@ Hold **both** left middle thumb (HRM) and left inner thumb (NAV) simultaneously:
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │ Brt-   │ Brt+ │MsnCtl│Sptlgt│ Snip │AppSwt│ │ |◀◀  │ ▶/▮▮ │ ▶▶|  │  🔇  │ Vol- │  Vol+  │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │BTClr │ │      │  🖱L  │  🖱↑  │  🖱R  │      │ Studio │
+│  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │      │ │ 🖱←   │ 🖱↓   │ 🖱↑   │ 🖱→   │Studio│        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│ OutTog │Reset │ Boot │MacLck│SpcLft│SpcRgt│ │      │  🖱←  │  🖱↓  │  🖱→  │      │        │
+│ OutTog │Reset │ Boot │MacLck│SpcLft│BTClr │ │ 🖱L   │ 🖱R   │ 🖱M   │ ScUp │ ScDn │  CAPS  │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
                        │      │      │      │ │      │      │      │
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
@@ -306,17 +310,21 @@ Hold **both** left middle thumb (HRM) and left inner thumb (NAV) simultaneously:
 | Key | Action |
 |-----|--------|
 | BT0–BT4 | Switch to Bluetooth profile 1–5 |
-| BTClr | Clear current Bluetooth pairing (hold FN, then tap this) |
+| BTClr | Clear current BT pairing — placed on B (7 keys from BT4) to avoid accidents |
 | OutTog | Toggle between USB and BLE output |
 | Studio | Unlock ZMK Studio (USB only — real-time keymap editing without reflash) |
 | Reset | Soft reset the controller |
 | Boot | Enter DFU bootloader mode (for flashing firmware) |
 | MacLck | ⌘^Q — lock screen |
-| SpcLft/Rgt | macOS Mission Control: move left/right between Spaces |
-| MsnCtl | Mission Control (overview of all windows) |
+| SpcLft | macOS Mission Control: move left between Spaces |
+| MsnCtl | Mission Control overview |
 | Sptlgt | Spotlight Search |
 | Snip | Screenshot tool (⌃⇧⌘4) |
 | AppSwt | App Switcher (⌘Tab) |
+| 🖱←↓↑→ | Mouse movement (HJKL = vim-style, row of home row) |
+| 🖱L / 🖱R / 🖱M | Left / Right / Middle click |
+| ScUp / ScDn | Scroll wheel up / down |
+| CAPS | Caps Lock |
 
 ---
 
@@ -382,6 +390,7 @@ Hold **both** left middle thumb (HRM) and left inner thumb (NAV) simultaneously:
 
 **Hyper key:**
 - Press both SYM outer thumbs (ENT thumb + DEL thumb) simultaneously
-- Hold them down, then press your target key → Hyper+key fires
+- This activates a **sticky** Hyper modifier: release the thumbs, then tap your target key → Hyper+key fires
+- Or: keep holding the thumbs, tap the target key while both are held — same result
 - Assign ⌘^⌥⇧ combinations in Raycast, BetterTouchTool, or Keyboard Maestro
 - Since no standard app uses all four modifiers, Hyper-combos are completely collision-free

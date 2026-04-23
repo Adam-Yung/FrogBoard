@@ -175,6 +175,13 @@
     bindings = <&mkp MB1>, <&mkp MB1>;
   };
 
+  /* ── Two-space tap macro (used by ht_twospace on pos 12) ────────── */
+  macro_two_spaces: macro_two_spaces {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp SPACE>, <&kp SPACE>;
+  };
+
   /* ── Code digraph macros (used as SYM-layer combos) ─────────────── */
   macro_eq_eq: macro_eq_eq {
     compatible = "zmk,behavior-macro";
