@@ -4,3 +4,4 @@
 /tools/
 /.west/
 .zmk/
+.DS_Store
