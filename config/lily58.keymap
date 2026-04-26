@@ -4,52 +4,52 @@
  *
  * Key position index (× = absent on Silakka54):
  *
- *  ┌──┬──┬──┬──┬──┬──┐         ┌──┬──┬──┬──┬──┬──┐
- *  │00│01│02│03│04│05│         │06│07│08│09│10│11│
- *  ├──┼──┼──┼──┼──┼──┤         ├──┼──┼──┼──┼──┼──┤
- *  │12│13│14│15│16│17│         │18│19│20│21│22│23│
- *  ├──┼──┼──┼──┼──┼──┤         ├──┼──┼──┼──┼──┼──┤
- *  │24│25│26│27│28│29│         │30│31│32│33│34│35│
- *  ├──┼──┼──┼──┼──┼──┼──┐ ┌──┼──┼──┼──┼──┼──┼──┤
- *  │36│37│38│39│40│41│42×│ │×43│44│45│46│47│48│49│
- *  └──┴──┴──┼──┼──┼──┼──┘ └──┼──┼──┼──┼──┴──┴──┘
- *           │50│51│52│×53 ×54│55│56│57│
- *           └──┴──┴──┘       └──┴──┴──┘
+ * ┌──┬──┬──┬──┬──┬──┐         ┌──┬──┬──┬──┬──┬──┐
+ * │00│01│02│03│04│05│         │06│07│08│09│10│11│
+ * ├──┼──┼──┼──┼──┼──┤         ├──┼──┼──┼──┼──┼──┤
+ * │12│13│14│15│16│17│         │18│19│20│21│22│23│
+ * ├──┼──┼──┼──┼──┼──┤         ├──┼──┼──┼──┼──┼──┤
+ * │24│25│26│27│28│29│         │30│31│32│33│34│35│
+ * ├──┼──┼──┼──┼──┼──┼──┐   ┌──┼──┼──┼──┼──┼──┼──┤
+ * │36│37│38│39│40│41│ ×│   │× │44│45│46│47│48│49│
+ * └──┴──┴──┼──┼──┼──┼──┘   └──┼──┼──┼──┼──┴──┴──┘
+ *          │50│51│52│×53   ×54│55│56│57│
+ *          └──┴──┴──┘         └──┴──┴──┘
  *
  * ── Thumb cluster (outer → inner on each side) ────────────────────
- *   Left  50=SYM/RET  51=HRM/TAB  52=NAV/SPC
- *   Right 55=NAV/BSPC 56=HRM/nop  57=SYM/DEL
+ * Left  50=SYM/RET  51=HRM/TAB  52=NAV/SPC
+ * Right 55=NAV/BSPC 56=HRM/nop  57=SYM/DEL
  *
- *   Tap  (left→right): RET · TAB · SPC | BSPC · nop · DEL
- *   Hold (left→right): SYM · HRM · NAV | NAV  · HRM · SYM
+ * Tap  (left→right): RET · TAB · SPC | BSPC · nop · DEL
+ * Hold (left→right): SYM · HRM · NAV | NAV  · HRM · SYM
  *
  * ── Outer column keys (BASE) ──────────────────────────────────────
- *   LEFT  (top→bot): td(`~) · LALT       · mt(CTL,ESC) · LSFT
- *   RIGHT (top→bot): td(=+) · td(-_)     · td('")       · td(|\\)
+ * LEFT  (top→bot): td(`~) · LALT       · mt(CTL,ESC) · LSFT
+ * RIGHT (top→bot): td(=+) · td(-_)     · td('")       · td(|\\)
  *
- *   Left outer col is a failsafe for modifiers (ALT/CTRL/SHIFT) —
- *   primary modifier access is via the HRM thumb layer.
+ * Left outer col is a failsafe for modifiers (ALT/CTRL/SHIFT) —
+ * primary modifier access is via the HRM thumb layer.
  *
  * ── Thumb combos ─────────────────────────────────────────────────
- *   Both NAV (52+55) → FN layer (momentary)
- *   Both SYM (50+57) → Hyper sticky key (⌘^⌥⇧) — hold both, tap target
+ * Both NAV (52+55) → FN layer (momentary)
+ * Both SYM (50+57) → Hyper sticky key (⌘^⌥⇧) — hold both, tap target
  *
  * ── OS mode ───────────────────────────────────────────────────────
- *   Default = Windows / portable (Ctrl shortcuts, Ctrl+arrow word nav)
- *   Toggle  = FN layer pos 56 (right middle thumb) → &tog MAC_MODE
+ * Default = Windows / portable (Ctrl shortcuts, Ctrl+arrow word nav)
+ * Toggle  = FN layer pos 56 (right middle thumb) → &tog MAC_MODE
  *
- *   MAC_MODE (layer 6) is an empty flag layer. When active, ZMK
- *   conditional_layers fires the Mac overlays:
- *     NAV  + MAC_MODE → NAV_MAC  (layer 7)
- *     JUMP + MAC_MODE → JUMP_MAC (layer 8)
- *     FN   + MAC_MODE → FN_MAC   (layer 9)
+ * MAC_MODE (layer 7) is an empty flag layer. When active, ZMK
+ * conditional_layers fires the Mac overlays:
+ * NAV  + MAC_MODE → NAV_MAC  (layer 8)
+ * JUMP + MAC_MODE → JUMP_MAC (layer 9)
+ * FN   + MAC_MODE → FN_MAC   (layer 10)
  *
- *   Mac NAV uses: Cmd shortcuts · Option+arrow word nav · Option+Del
- *   Win NAV uses: Ctrl shortcuts · Ctrl+arrow word nav · Ctrl+Del
- *   Both use: Home/End line nav · Ctrl+Home/End doc nav (works in
- *             VS Code + terminals on Mac; native Mac apps may differ)
+ * Mac NAV uses: Cmd shortcuts · Option+arrow word nav · Option+Del
+ * Win NAV uses: Ctrl shortcuts · Ctrl+arrow word nav · Ctrl+Del
+ * Both use: Home/End line nav · Ctrl+Home/End doc nav (works in
+ * VS Code + terminals on Mac; native Mac apps may differ)
  *
- *   Display shows "mac" in base layer when Mac mode is active.
+ * Display shows "mac" in base layer when Mac mode is active.
  */
 
 #include <behaviors.dtsi>
@@ -64,11 +64,12 @@
 #define SYM      2
 #define FN       3
 #define JUMP     4
-#define HRM      5
-#define MAC_MODE 6
-#define NAV_MAC  7
-#define JUMP_MAC 8
-#define FN_MAC   9
+#define HRM_L    5
+#define HRM_R    6
+#define MAC_MODE 7
+#define NAV_MAC  8
+#define JUMP_MAC 9
+#define FN_MAC   10
 
 / {
     /* ── Behaviors ────────────────────────────────────────────────── */
@@ -83,7 +84,6 @@
             tapping-term-ms = <200>;
             bindings = <&kp GRAVE>, <&kp TILDE>;
         };
-
         /* pos 11 — tap = =   double-tap = +                          */
         td_equal_plus: td_equal_plus {
             compatible = "zmk,behavior-tap-dance";
@@ -91,7 +91,6 @@
             tapping-term-ms = <200>;
             bindings = <&kp EQUAL>, <&kp PLUS>;
         };
-
         /* pos 23 — tap = -   double-tap = _                          */
         td_minus_under: td_minus_under {
             compatible = "zmk,behavior-tap-dance";
@@ -99,7 +98,6 @@
             tapping-term-ms = <200>;
             bindings = <&kp MINUS>, <&kp UNDER>;
         };
-
         /* pos 35 — tap = '   double-tap = "                          */
         td_sqt_dqt: td_sqt_dqt {
             compatible = "zmk,behavior-tap-dance";
@@ -118,7 +116,8 @@
 
         /* pos 55/57 — tap = BSPC/DEL  hold = NAV/SYM  tap-then-hold repeats
          * quick-tap-ms lets the OS handle auto-repeat: tap the key, then
-         * within 200 ms hold again → ZMK keeps the key pressed.         */
+         * within 200 ms hold again → ZMK keeps the key pressed.    
+         */
         lt_del: lt_del {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -136,7 +135,6 @@
             flavor = "hold-preferred";
             bindings = <&sys_reset>, <&none>;
         };
-
         /* FN row 3 — hold-only bootloader entry (tap = no-op, hold 2 s) */
         ht_boot: ht_boot {
             compatible = "zmk,behavior-hold-tap";
@@ -146,11 +144,9 @@
             bindings = <&bootloader>, <&none>;
         };
     };
-
     /* ── Combos ───────────────────────────────────────────────────── */
     combos {
         compatible = "zmk,combos";
-
         /* ── Thumb combos (any layer) ──────────────────────────────
          * Both NAV inner thumbs → FN layer (momentary)              */
         combo_fn {
@@ -162,7 +158,8 @@
         /* Both SYM outer thumbs → Hyper sticky key (⌘^⌥⇧)
          * &sk holds the modifier until the next key press.
          * Workflow: press both SYM thumbs → release → tap target key
-         * = Hyper+target. Or: hold both thumbs → tap target = same.  */
+         * = Hyper+target.
+         * Or: hold both thumbs → tap target = same.  */
         combo_hyper {
             timeout-ms = <50>;
             key-positions = <50 57>;
@@ -171,9 +168,10 @@
 
         /* ── SYM-layer combos ──────────────────────────────────────
          * Digraph operators (adjacent fingers, top row):
-         *   W+E (14+15) → !=     E+R (15+16) → ==
-         *   U+I (19+20) → =>     I+O (20+21) → ->
+         * W+E (14+15) → !=     E+R (15+16) → ==
+         * U+I (19+20) → =>     I+O (20+21) → ->
          * Triple backtick (O+P, 21+22) → ``` ``` with cursor inside  */
+     
         combo_not_eq {
             timeout-ms = <50>;
             key-positions = <14 15>;
@@ -205,11 +203,9 @@
             layers = <SYM>;
         };
     };
-
     /* ── Conditional layers (OS mode overlays) ────────────────────── */
     conditional_layers {
         compatible = "zmk,conditional-layers";
-
         /* NAV + MAC_MODE → NAV_MAC: Mac shortcuts replace Win ones   */
         nav_mac_cond {
             if-layers = <NAV MAC_MODE>;
@@ -232,16 +228,15 @@
     /* ── Keymap ───────────────────────────────────────────────────── */
     keymap {
         compatible = "zmk,keymap";
-
         /* ─────────────────────────────────────────────────────────────
          * LAYER 0 · BASE
          *
          * Left outer col (failsafe modifiers, top→bot):
-         *   td(`~) · LALT · mt(CTRL,ESC) · LSFT
+         * td(`~) · LALT · mt(CTRL,ESC) · LSFT
          *
          * Right outer col (top→bot):
-         *   td(=+) · td(-_) · td('") · td(|\)
-         *   tap pipe, double-tap backslash
+         * td(=+) · td(-_) · td('") · td(|\)
+         * tap pipe, double-tap backslash
          *
          * ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
          * │ `~ ↕   │  1   │  2   │  3   │  4   │  5   │ │  6   │  7   │  8   │  9   │  0   │ =+ ↕   │
@@ -258,8 +253,8 @@
          * ↕ = tap-dance (single-tap / double-tap)
          *
          * Combos:
-         *   52+55 (both NAV) → FN layer
-         *   50+57 (both SYM) → Hyper sticky ⌘^⌥⇧
+         * 52+55 (both NAV) → FN layer
+         * 50+57 (both SYM) → Hyper sticky ⌘^⌥⇧
          * ───────────────────────────────────────────────────────────── */
         default_layer {
             display-name = "base";
@@ -268,7 +263,7 @@
 &kp LALT           &kp Q    &kp W    &kp E    &kp R    &kp T                      &kp Y    &kp U    &kp I     &kp O    &kp P     &td_minus_under
 &mt LCTL ESC       &kp A    &kp S    &kp D    &kp F    &kp G                      &kp H    &kp J    &kp K     &kp L    &kp SEMI  &td_sqt_dqt
 &kp LSFT           &kp Z    &kp X    &kp C    &kp V    &kp B    &none    &none    &kp N    &kp M    &kp COMMA &kp DOT  &kp FSLH  &td_pipe_bslh
-                                     &lt SYM RET  &lt HRM TAB  &lt NAV SPACE  &none  &none  &lt_del NAV BSPC  &mo HRM  &lt_del SYM DEL
+                                     &lt SYM RET  &lt HRM_L TAB  &lt NAV SPACE  &none  &none  &lt_del NAV BSPC  &mo HRM_R  &lt_del SYM DEL
             >;
         };
 
@@ -276,26 +271,26 @@
          * LAYER 1 · NAV  (hold inner thumb) — Windows / portable default
          *
          * Right hand — movement (same on Windows & Mac):
-         *   H/J/K/L = ←/↓/↑/→   U/I = PgUp/PgDn
-         *   ,/. = Ctrl+Home/End (doc top/bottom)
-         *   ; = Find
+         * H/J/K/L = ←/↓/↑/→   U/I = PgUp/PgDn
+         * ,/. = Ctrl+Home/End (doc top/bottom)
+         * ; = Find
          *
          * Left hand — editing (Windows default; Mac overlay in NAV_MAC):
-         *   A=SelectAll  S=Undo  D=[JUMP mode]  F=LSFT (shift-select)
-         *   Q=⇧↵  W=SelectWord  E=SelectLine  R=Redo
-         *   X=Cut  C=Copy  V=Paste
+         * A=SelectAll  S=Undo  D=[JUMP mode]  F=LSFT (shift-select)
+         * Q=⇧↵  W=SelectWord  E=SelectLine  R=Redo
+         * X=Cut  C=Copy  V=Paste
          *
          * Windows shortcuts: Ctrl+Z/Y/A/X/C/V/F
          * Mac overlay (NAV_MAC): Cmd+Z/Shift+Z/A/X/C/V/F, Option+Del
          *
          * JUMP mode (hold D): HJKL → word/line jumps
-         *   Win: H=Ctrl+←  L=Ctrl+→  J=Home  K=End
-         *   Mac: H=Opt+←   L=Opt+→   J=Home  K=End  (via JUMP_MAC)
+         * Win: H=Ctrl+←  L=Ctrl+→  J=Home  K=End
+         * Mac: H=Opt+←   L=Opt+→   J=Home  K=End  (via JUMP_MAC)
          *
          * Thumb in NAV:
-         *   Left middle (51)  = LSFT (shift-select)
-         *   Right inner (55)  = Del word back  (Win: Ctrl+⌫  Mac: Opt+⌫)
-         *   Right outer (57)  = Del word fwd   (Win: Ctrl+⌦  Mac: Opt+⌦)
+         * Left middle (51)  = LSFT (shift-select)
+         * Right inner (55)  = Del word back  (Win: Ctrl+⌫  Mac: Opt+⌫)
+         * Right outer (57)  = Del word fwd   (Win: Ctrl+⌦  Mac: Opt+⌦)
          *
          * ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
          * │        │      │      │      │      │      │ │      │      │      │      │      │        │
@@ -324,20 +319,20 @@
          * LAYER 2 · SYM  (hold outer thumb)
          *
          * Symmetric brackets by finger (same finger = same bracket type):
-         *   Pinky  A=<   ;=>   Ring   S=[   L=]
-         *   Middle D={   K=}   Index  F=(   J=)   Inner G==  H=!
+         * Pinky  A=<   ;=>   Ring   S=[   L=]
+         * Middle D={   K=}   Index  F=(   J=)   Inner G==  H=!
          *
          * Outer col overrides in SYM:
-         *   pos 11 (outer row 0 right) = + (dedicated, no double-tap needed)
-         *   pos 23 (outer row 1 right) = _ (dedicated, no double-tap needed)
-         *   Other outer cols = &trans → BASE tap-dances still accessible
+         * pos 11 (outer row 0 right) = + (dedicated, no double-tap needed)
+         * pos 23 (outer row 1 right) = _ (dedicated, no double-tap needed)
+         * Other outer cols = &trans → BASE tap-dances still accessible
          *
          * Row 3 auto-close macros (aligned under row 2 brackets):
-         *   Z(<) X([) C({) V(() B('') | N("") M(``) ,=? .=: /=\
+         * Z(<) X([) C({) V(() B('') | N("") M(``) ,=? .=: /=\
          *
          * Row 1 special chars + digraph combos:
-         *   Q=` W=~ E=@ R=# T=$  |  Y=% U=^ I=* O=& P=|
-         *   W+E→!=  E+R→==  U+I→=>  I+O→->  O+P→``` ```
+         * Q=` W=~ E=@ R=# T=$  |  Y=% U=^ I=* O=& P=|
+         * W+E→!=  E+R→==  U+I→=>  I+O→->  O+P→``` ```
          *
          * ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
          * │        │      │      │      │      │      │ │      │      │      │      │      │   +    │
@@ -353,7 +348,7 @@
          *
          * ⬡ = auto-close: types both halves, positions cursor inside
          * SYM combos (hold SYM, press pairs):
-         *   W+E→!=  E+R→==  U+I→=>  I+O→->  O+P→``` ```
+         * W+E→!=  E+R→==  U+I→=>  I+O→->  O+P→``` ```
          * ───────────────────────────────────────────────────────────── */
         layer_sym {
             display-name = "sym";
@@ -368,18 +363,18 @@
 
         /* ─────────────────────────────────────────────────────────────
          * LAYER 3 · FN  (hold both NAV inner thumbs 52+55 simultaneously)
-         *            Windows default — Mac overlay in FN_MAC (layer 9)
+         * Windows default — Mac overlay in FN_MAC (layer 10)
          *
          * Row 0: F-keys F1–F12
          * Row 1 left:  Brightness · AppSwitch · Search · Snip · TaskView
-         *              Win: Alt+Tab · Win+Return · Win+Shift+S · Win+Tab
-         *              Mac: Cmd+Tab · Cmd+Space  · Ctrl+Cmd+Shift+4 · Ctrl+Up
+         * Win: Alt+Tab · Win+Return · Win+Shift+S · Win+Tab
+         * Mac: Cmd+Tab · Cmd+Space  · Ctrl+Cmd+Shift+4 · Ctrl+Up
          * Row 1 right: Media playback · Volume
          * Row 2 left:  BT profile select 0–4 · Studio unlock (pos 29)
          * Row 2 right: Mouse movement HJKL · DblClick · DskRight
-         *              Win: Win+Ctrl+Right    Mac: Ctrl+Right (Spaces)
+         * Win: Win+Ctrl+Right    Mac: Ctrl+Right (Spaces)
          * Row 3 left:  OutTog · Reset · Boot⌛ · Lock · DskLeft · BTClr
-         *              Win: Win+L · Win+Ctrl+Left   Mac: Ctrl+Cmd+Q · Ctrl+Left
+         * Win: Win+L · Win+Ctrl+Left   Mac: Ctrl+Cmd+Q · Ctrl+Left
          * Row 3 right: Mouse clicks · Scroll · CapsWord
          * Thumb pos 56: MAC_MODE toggle (switches between Win/Mac modes)
          *
@@ -388,9 +383,9 @@
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
          * │ Brt-   │ Brt+ │AppSwt│Search│ Snip │TskVw │ │ |◀◀  │ ▶/▮▮ │ ▶▶|  │  🔇  │ Vol- │  Vol+  │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-         * │  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │Stdio │ │ 🖱←   │ 🖱↓   │ 🖱↑   │ 🖱→   │DblClk│DskRt │
+         * │  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │Stdio │ │ 🖱←  │ 🖱↓  │ 🖱↑  │ 🖱→  │DblClk│DskRt   │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-         * │ OutTog │Rst⌛ │Boot⌛│ Lock │DskLft│BTClr │ │ 🖱L   │ 🖱R   │ 🖱M   │ ScUp │ ScDn │CapsWrd │
+         * │ OutTog │Rst⌛ │Boot⌛│ Lock │DskLft│BTClr │ │ 🖱L  │ 🖱R  │ 🖱M  │ ScUp │ ScDn │CapsWrd │
          * ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
          *                        │      │      │      │ │      │ MAC  │      │
          *                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
@@ -408,7 +403,7 @@
 &kp C_BRI_DN &kp C_BRI_UP  &Win_App_Switch   &Win_Spotlight    &Win_Snip_Tool  &Win_Task_View               &kp C_PREV      &kp C_PP      &kp C_NEXT     &kp C_MUTE       &kp C_VOL_DN    &kp C_VOL_UP
 &bt BT_SEL 0 &bt BT_SEL 1  &bt BT_SEL 2      &bt BT_SEL 3      &bt BT_SEL 4    &studio_unlock               &mmv MOVE_LEFT  &mmv MOVE_DOWN &mmv MOVE_UP  &mmv MOVE_RIGHT  &Double_Click   &Win_Desk_Right
 &out OUT_TOG &ht_reset 0 0  &ht_boot 0 0      &Win_Lock         &Win_Desk_Left  &bt BT_CLR   &none   &none   &mkp LCLK       &mkp RCLK     &mkp MB3       &msc SCRL_UP     &msc SCRL_DOWN  &caps_word
-                                              &trans            &trans          &trans   &none   &none   &trans          &tog MAC_MODE  &trans
+                                             &trans            &trans          &trans   &none   &none   &trans          &tog MAC_MODE  &trans
             >;
         };
 
@@ -417,18 +412,18 @@
          *
          * HJKL become word/line jumps.
          *
-         *   Windows (default):
-         *     H = Ctrl+← (word back)    L = Ctrl+→ (word forward)
-         *   Mac (JUMP_MAC overlay):
-         *     H = Opt+←  (word back)    L = Opt+→  (word forward)
-         *   Both platforms:
-         *     J = Home   (line start)   K = End    (line end)
+         * Windows (default):
+         * H = Ctrl+← (word back)    L = Ctrl+→ (word forward)
+         * Mac (JUMP_MAC overlay):
+         * H = Opt+←  (word back)    L = Opt+→  (word forward)
+         * Both platforms:
+         * J = Home   (line start)   K = End    (line end)
          *
          * For doc start/end, use NAV `,`/`.` (Ctrl+Home/End).
          *
          * Shift-select: hold F (→ LSFT via NAV fall-through):
-         *   D+F+H = select word left    D+F+L = select word right
-         *   D+F+J = select to line start  D+F+K = select to line end
+         * D+F+H = select word left    D+F+L = select word right
+         * D+F+J = select to line start  D+F+K = select to line end
          *
          * Thumb falls through to NAV: 55=word-del-back, 57=word-del-fwd
          *
@@ -456,45 +451,83 @@
         };
 
         /* ─────────────────────────────────────────────────────────────
-         * LAYER 5 · HRM  (hold either middle thumb)
+         * LAYER 5 · HRM_L  (hold left middle thumb)
          *
-         * Primary modifier access. Hold middle thumb → hold modifier →
-         * tap target key on other hand. Zero timing ambiguity.
+         * Primary modifier access for the left hand using sticky keys.
+         * Right hand falls through to base, allowing you to easily
+         * strike a modified key like Cmd+L.
          *
-         *   A=LCTL  S=LALT  D=LGUI  F=LSFT   (left hand)
-         *   J=RSFT  K=RGUI  L=RALT  ;=RCTL   (right hand, finger-mirrored)
+         * A=LCTL  S=LALT  D=LGUI  F=LSFT   (left hand)
          *
          * Left outer col (pos 12/24/36) remains accessible in HRM via
          * &trans fall-through — those hold-modifiers are a fallback.
          *
          * HRM + NAV simultaneously → modifier+arrow navigation
-         *   (both layers active; HRM row 2 takes priority over NAV row 2)
+         * (both layers active; HRM row 2 takes priority over NAV row 2)
          *
          * ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
          * │        │      │      │      │      │      │ │      │      │      │      │      │        │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
          * │        │      │      │      │      │      │ │      │      │      │      │      │        │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-         * │        │ LCTL │ LALT │ LGUI │ LSFT │      │ │      │ RSFT │ RGUI │ RALT │ RCTL │        │
+         * │        │ LCTL │ LALT │ LGUI │ LSFT │      │ │      │      │      │      │      │        │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
          * │        │      │      │      │      │      │ │      │      │      │      │      │        │
          * ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-         *                        │      │[HRM] │      │ │      │[HRM] │      │
+         *                        │      │[HRM] │      │ │      │      │      │
          *                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
          * ───────────────────────────────────────────────────────────── */
-        layer_hrm {
-            display-name = "hrm";
+        layer_hrm_l {
+            display-name = "hrm-l";
             bindings = <
 &trans  &trans    &trans    &trans    &trans    &trans                     &trans  &trans    &trans    &trans    &trans    &trans
 &trans  &trans    &trans    &trans    &trans    &trans                     &trans  &trans    &trans    &trans    &trans    &trans
-&trans  &kp LCTL  &kp LALT  &kp LGUI  &kp LSFT  &trans                     &trans  &kp RSFT  &kp RGUI  &kp RALT  &kp RCTL  &trans
+&trans  &sk LCTL  &sk LALT  &sk LGUI  &sk LSFT  &trans                     &trans  &trans    &trans    &trans    &trans    &trans
 &trans  &trans    &trans    &trans    &trans    &trans   &none    &none    &trans  &trans    &trans    &trans    &trans    &trans
                              &trans    &trans    &trans   &none    &none    &trans  &trans    &trans
             >;
         };
 
         /* ─────────────────────────────────────────────────────────────
-         * LAYER 6 · MAC_MODE  (persistent toggle — all &trans)
+         * LAYER 6 · HRM_R  (hold right middle thumb)
+         *
+         * Primary modifier access for the right hand using sticky keys.
+         * Left hand falls through to base, allowing you to easily
+         * strike a modified key like Cmd+C.
+         *
+         * J=RSFT  K=RGUI  L=RALT  ;=RCTL   (right hand, finger-mirrored)
+         *
+         * Left outer col (pos 12/24/36) remains accessible in HRM via
+         * &trans fall-through — those hold-modifiers are a fallback.
+         *
+         * HRM + NAV simultaneously → modifier+arrow navigation
+         * (both layers active; HRM row 2 takes priority over NAV row 2)
+         *
+         * ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
+         * │        │      │      │      │      │      │ │      │      │      │      │      │        │
+         * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
+         * │        │      │      │      │      │      │ │      │      │      │      │      │        │
+         * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
+         * │        │      │      │      │      │      │ │      │ RSFT │ RGUI │ RALT │ RCTL │        │
+         * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
+         * │        │      │      │      │      │      │ │      │      │      │      │      │        │
+         * ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
+         *                        │      │      │      │ │      │[HRM] │      │
+         *                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
+         * ───────────────────────────────────────────────────────────── */
+        layer_hrm_r {
+            display-name = "hrm-r";
+            bindings = <
+&trans  &trans    &trans    &trans    &trans    &trans                     &trans  &trans    &trans    &trans    &trans    &trans
+&trans  &trans    &trans    &trans    &trans    &trans                     &trans  &trans    &trans    &trans    &trans    &trans
+&trans  &trans    &trans    &trans    &trans    &trans                     &trans  &sk RSFT  &sk RGUI  &sk RALT  &sk RCTL  &trans
+&trans  &trans    &trans    &trans    &trans    &trans   &none    &none    &trans  &trans    &trans    &trans    &trans    &trans
+                             &trans    &trans    &trans   &none    &none    &trans  &trans    &trans
+            >;
+        };
+
+        /* ─────────────────────────────────────────────────────────────
+         * LAYER 7 · MAC_MODE  (persistent toggle — all &trans)
          *
          * This layer contains no bindings. It acts as a flag: when
          * active, conditional_layers fires the Mac overlays for NAV,
@@ -515,7 +548,7 @@
         };
 
         /* ─────────────────────────────────────────────────────────────
-         * LAYER 7 · NAV_MAC  (conditional: NAV + MAC_MODE)
+         * LAYER 8 · NAV_MAC  (conditional: NAV + MAC_MODE)
          *
          * Overrides only the Mac-specific positions in NAV.
          * Everything else falls through to NAV (Windows layer).
@@ -547,7 +580,7 @@
         };
 
         /* ─────────────────────────────────────────────────────────────
-         * LAYER 8 · JUMP_MAC  (conditional: JUMP + MAC_MODE)
+         * LAYER 9 · JUMP_MAC  (conditional: JUMP + MAC_MODE)
          *
          * Overrides H and L with Option+arrow (Mac word navigation).
          * J=Home, K=End are the same on both platforms.
@@ -576,7 +609,7 @@
         };
 
         /* ─────────────────────────────────────────────────────────────
-         * LAYER 9 · FN_MAC  (conditional: FN + MAC_MODE)
+         * LAYER 10 · FN_MAC  (conditional: FN + MAC_MODE)
          *
          * Overrides only the OS-specific keys in FN.
          * All other keys fall through to FN (Windows layer).
@@ -590,7 +623,7 @@
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
          * │        │      │AppSwt│Sptlgt│ Snip │MsnCtl│ │      │      │      │      │      │        │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-         * │        │      │      │      │      │      │ │      │      │      │      │      │SpcRt │
+         * │        │      │      │      │      │      │ │      │      │      │      │      │SpcRt   │
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
          * │        │      │      │MacLck│SpcLft│      │ │      │      │      │      │      │        │
          * ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
@@ -601,7 +634,7 @@
             display-name = "fn-mac";
             bindings = <
 &trans  &trans  &trans            &trans                &trans            &trans                         &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &Mac_App_Switch   &Mac_Spotlight_Search &Mac_Snip_Tool    &Mac_Mission_Control            &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &Mac_App_Switch   &Mac_Spotlight_Search &Mac_Snip_Tool    &Mac_Mission_Control           &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans            &trans                &trans            &trans                         &trans  &trans  &trans  &trans  &trans  &Mac_Win_Right
 &trans  &trans  &trans            &Mac_Lock             &Mac_Win_Left     &trans          &none   &none   &trans  &trans  &trans  &trans  &trans  &trans
                                   &trans                &trans            &trans          &none   &none   &trans  &trans  &trans
