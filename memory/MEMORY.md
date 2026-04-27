@@ -21,7 +21,7 @@ ZMK Studio enabled (USB only). Keyboard name: "Silakka54".
 - **JUMP layer (4)** — NAV+hold-D → HJKL become word/line jumps
 - **FN** — both NAV thumbs (52+55) combo (momentary)
 - **lt_del custom behavior** — quick-tap-ms=200 enables auto-repeat on BSPC/DEL thumbs
-- **mo_caps custom behavior** — 1-cell hold-tap: hold=`&mo` layer, tap=`&caps_word`; at pos 56
+- **mo_caps custom behavior** — hold-tap: hold=`&mo` layer, tap=`&caps_word`; at pos 56 as `&mo_caps HRM_R 0`. ZMK forces `#binding-cells = <2>` on all hold-taps; the trailing 0 is a dummy for the tap binding (caps_word ignores it).
 - **ht_reset/ht_boot** — hold-only safety keys (1s/2s), tap=no-op
 - **Right pinky tap-dances** (=+, -_, '", |\) use 100ms tapping-term; left (\`~) stays at 200ms
 - **`macro_two_spaces`** defined in macros.dtsi but currently unused in keymap

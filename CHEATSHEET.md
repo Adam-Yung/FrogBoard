@@ -19,11 +19,11 @@ Thumb:  50 51 52 ×           |   × 55 56 57
 ## Thumb Cluster
 
 ```
-Left  (outer→inner):  50=SYM/RET   51=HRM/TAB   52=NAV/SPC
-Right (inner→outer):  55=NAV/BSPC  56=HRM/nop   57=SYM/DEL
+Left  (outer→inner):  50=SYM/RET   51=HRM_L/TAB   52=NAV/SPC
+Right (inner→outer):  55=NAV/BSPC  56=HRM_R/CapsW  57=SYM/DEL
 
-Tap  (L→R): RET  · TAB · SPC  |  BSPC · nop · DEL
-Hold (L→R): SYM  · HRM · NAV  |  NAV  · HRM · SYM
+Tap  (L→R): RET  · TAB  · SPC  |  BSPC  · CapsW  · DEL
+Hold (L→R): SYM  · HRM  · NAV  |  NAV   · HRM_R  · SYM
 ```
 
 ---
@@ -53,11 +53,12 @@ Display shows **"mac"** at rest when Mac mode is active.
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │  LSFT  │  Z   │  X   │  C   │  V   │  B   │ │  N   │  M   │  ,   │  .   │  /   │  |\ ↕  │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │SYM/↵ │HRM/⇥ │NAV/␣ │ │NAV/⌫ │ nop  │SYM/⌦ │
+                       │SYM/↵ │HRM/⇥ │NAV/␣ │ │NAV/⌫↺│CapsW │SYM/⌦↺│
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
 ```
 
-↕ = tap-dance: single-tap / double-tap
+↕ = tap-dance: single-tap / double-tap (right pinky: 100ms window; left `` `~ ``: 200ms)
+↺ = quick-tap repeats: tap then hold within 200ms for OS auto-repeat
 - `` `~ `` — backtick / tilde
 - `=+` — equals / plus
 - `-_` — minus / underscore
@@ -84,7 +85,7 @@ Windows shortcuts shown. Mac overlay activates automatically in Mac mode.
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │        │      │ Cut  │ Copy │Paste │      │ │      │      │^Home │^End  │      │        │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │      │ LSFT │[NAV] │ │ DelW← │ nop  │ DelW→│
+                       │      │ LSFT │[NAV] │ │ DelW← │CapsW │ DelW→│
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
 ```
 
@@ -162,9 +163,11 @@ Same finger on both hands = same bracket type. Left = open, right = close.
 
 ---
 
-## LAYER 5 — HRM  (hold middle thumb)
+## LAYERS 5 & 6 — HRM-L / HRM-R  (hold middle thumb)
 
-Home row becomes modifiers. Zero timing ambiguity.
+Home row becomes modifiers. Zero timing ambiguity. HRM is split into two layers:
+- **HRM-L (layer 5)**: hold **left** middle thumb (pos 51) → ASDF become mods
+- **HRM-R (layer 6)**: hold **right** middle thumb (pos 56, also taps Caps Word) → JKL; become mods
 
 ```
 ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
@@ -176,11 +179,11 @@ Home row becomes modifiers. Zero timing ambiguity.
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │        │      │      │      │      │      │ │      │      │      │      │      │        │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │      │[HRM] │      │ │      │[HRM] │      │
+                       │      │[HRM-L]│     │ │      │[HRM-R]│     │
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
 ```
 
-Hold middle thumb → hold modifier key on home row → tap target on other hand.
+Hold left thumb → hold ASDF mod → tap right-hand target. (Or right thumb → JKL; mod → tap left-hand target.)
 HRM + NAV simultaneously → modifier + arrow navigation.
 
 ---
@@ -195,7 +198,7 @@ Windows shortcuts shown. Mac overrides activate automatically in Mac mode.
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │ Brt-   │ Brt+ │AppSwt│Search│ Snip │TskVw │ │ |◀◀  │ ▶/▮▮ │ ▶▶|  │  🔇  │ Vol- │  Vol+  │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │Stdio │ │ 🖱←   │ 🖱↓   │ 🖱↑   │ 🖱→   │DblClk│DskRt │
+│  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │Stdio │ │ 🖱←  │ 🖱↓  │ 🖱↑  │ 🖱→  │DblClk│DskRt │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │ Boot⌛ │Rst⌛ │OutTog│ Lock │DskLft│BTClr │ │ 🖱L   │ 🖱R   │ 🖱M   │ ScUp │ ScDn │ Boot⌛ │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
@@ -212,12 +215,11 @@ Windows shortcuts shown. Mac overrides activate automatically in Mac mode.
 | Lock | Win+L | ⌃⌘Q |
 | DskLft | Win+Ctrl+← | Ctrl+← (Spaces) |
 | DskRt | Win+Ctrl+→ | Ctrl+→ (Spaces) |
-| Rst⌛ | Hold 1 s → soft reset | same |
-| Boot⌛ | Hold 2 s → UF2 bootloader | same |
+| Rst⌛ | Hold 1 s → soft reset (pos 37, left outer row 3) | same |
+| Boot⌛ | Hold 2 s → UF2 bootloader — on both pos 36 (left outer) and pos 49 (right outer) | same |
 | BTClr | Clear BT pairing on current profile | same |
 | Stdio | Unlock ZMK Studio (USB only) | same |
 | MAC | Toggle Windows ↔ Mac mode | same |
-| Boot⌛ | Hold 2 s → UF2 bootloader (both left outer pos 36 and right outer pos 49) | same |
 
 ---
 
@@ -259,13 +261,15 @@ Del word ←   →  NAV thumb 55
 Del word →   →  NAV thumb 57
 ```
 
-### Modifiers (HRM layer)
+### Modifiers (HRM-L / HRM-R layers)
 ```
-Ctrl + key   →  hold middle thumb + A, tap target
-Alt  + key   →  hold middle thumb + S, tap target
-Cmd  + key   →  hold middle thumb + D, tap target
-Shift + key  →  hold middle thumb + F, tap target
-Ctrl+Shift   →  hold middle thumb + A + F, tap target
+Ctrl + key   →  hold left thumb (HRM-L) + A, tap target
+Alt  + key   →  hold left thumb (HRM-L) + S, tap target
+Cmd  + key   →  hold left thumb (HRM-L) + D, tap target
+Shift + key  →  hold left thumb (HRM-L) + F, tap target
+Ctrl+Shift   →  hold left thumb (HRM-L) + A + F, tap target
+RShift + key →  hold right thumb (HRM-R) + J, tap target
+Caps Word    →  tap right thumb (HRM-R)
 ```
 
 ### Symbols

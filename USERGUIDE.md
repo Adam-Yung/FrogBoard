@@ -270,7 +270,7 @@ Symmetric: left-side combos produce equality operators, right-side combos produc
 
 **HRM is split into two layers:**
 - **HRM-L**: hold **left middle thumb** (TAB key, pos 51) → left home row becomes mods
-- **HRM-R**: hold **right middle thumb** (no-op key, pos 56) → right home row becomes mods
+- **HRM-R**: hold **right middle thumb** (Caps Word key, pos 56) → right home row becomes mods
 
 Home-row modifiers without any timing issues. Unlike traditional HRM, there is no hold-tap ambiguity — you explicitly hold the HRM thumb before pressing the modifier key.
 
@@ -300,9 +300,9 @@ The modifier is active as long as you physically hold the home-row key. Release 
 
 ### HRM + NAV bonus
 Hold **both** left middle thumb (HRM-L) and left inner thumb (NAV) simultaneously:
-- HRM home row gives modifiers, NAV right hand gives arrows
-- HRM + A + Right = ⌘→ (end of line), without needing to be in JUMP mode
-- HRM + F + Down = Shift+↓ (select down one line)
+- HRM-L home row gives modifiers, NAV right hand gives arrows
+- HRM-L + D + Right = ⌘→ (end of line on Mac), without needing JUMP mode
+- HRM-L + F + Down = Shift+↓ (select down one line)
 
 ---
 

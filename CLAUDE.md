@@ -185,7 +185,7 @@ Outer cols in SYM = &trans (fall through to BASE tap-dances: =+, -_, '", ())
 - `td_sqt_dqt` — tap=', double=" (pos 35); tapping-term=100ms
 - `td_pipe_bslh` — tap=|, double=\\ (pos 49); tapping-term=100ms
 - `lt_del` — custom hold-tap with quick-tap-ms=200 for auto-repeat on BSPC/DEL thumbs
-- `mo_caps` — 1-cell hold-tap: hold=`&mo` (layer), tap=`&caps_word`; used at pos 56 (right HRM thumb)
+- `mo_caps` — hold-tap: hold=`&mo` (layer), tap=`&caps_word`; used at pos 56 as `&mo_caps HRM_R 0` (trailing 0 is a dummy required by ZMK's const `#binding-cells = <2>` on all hold-taps)
 - `ht_reset` — hold-only soft reset (tapping-term=1000ms, tap=no-op)
 - `ht_boot` — hold-only bootloader (tapping-term=2000ms, tap=no-op); used on pos 36 AND pos 49
 

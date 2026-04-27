@@ -21,16 +21,16 @@ Three thumb keys per hand, each with tap and hold:
 | Thumb | Tap | Hold |
 |-------|-----|------|
 | Left outer | Return | SYM layer |
-| Left middle | Tab | HRM layer |
+| Left middle | Tab | HRM-L layer |
 | Left inner | Space | NAV layer |
 | Right inner | Backspace | NAV layer |
-| Right middle | — | HRM layer |
+| Right middle | Caps Word | HRM-R layer |
 | Right outer | Delete | SYM layer |
 
 Hold both NAV thumbs simultaneously → FN layer. Hold both SYM thumbs → Hyper sticky key (⌘^⌥⇧).
 
-### Modifier layer (HRM) — no timing issues
-Holding either middle thumb activates the HRM layer, where the home row becomes clean modifier keys (CTRL / ALT / GUI / SHIFT on each hand). No hold-tap ambiguity because the activation key is separate from the modifier keys.
+### Modifier layers (HRM-L / HRM-R) — no timing issues
+HRM is split into two layers. Holding the **left** middle thumb activates HRM-L (ASDF → CTRL/ALT/GUI/SHIFT). Holding the **right** middle thumb activates HRM-R (JKL; → RSFT/RGUI/RALT/RCTL). Tapping the right middle thumb fires Caps Word. No hold-tap ambiguity because the activation key is separate from the modifier keys.
 
 ### Navigation layer (NAV) — hands stay home
 Full cursor navigation on the right hand (HJKL vim-style), editing shortcuts on the left (select all, undo, redo, cut/copy/paste, find, select word/line). Sub-layer JUMP activates word and line jumping by holding D while in NAV.
