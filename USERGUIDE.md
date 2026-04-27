@@ -21,7 +21,8 @@ The display has three regions (rotated 90°, reads top-to-bottom):
 - Use these to know which device you're currently talking to at a glance
 
 **Bottom region**
-- Active layer name: `base` / `nav` / `sym` / `fn` / `jump` / `hrm`
+- Active layer name: `base` / `nav` / `sym` / `fn` / `jump` / `hrm-l` / `hrm-r` / `mac` / `nav-mac` / `jmp-mac` / `fn-mac`
+- `mac` shows at rest (in base) when Mac mode is toggled on — OS mode indicator
 
 ---
 
@@ -40,7 +41,7 @@ This layout is designed for **fast, precise typists** who want:
 The six thumb keys are the heart of the keyboard. Left to right:
 
 ```
-[RET/SYM] [TAB/HRM] [SPC/NAV]  |  [BSPC/NAV] [nop/HRM] [DEL/SYM]
+[RET/SYM] [TAB/HRM] [SPC/NAV]  |  [BSPC/NAV] [CapsW/HRM] [DEL/SYM]
 ```
 
 | Key | Tap | Hold |
@@ -49,7 +50,7 @@ The six thumb keys are the heart of the keyboard. Left to right:
 | Left middle (51) | Tab | HRM layer |
 | Left inner (52) | Space | NAV layer |
 | Right inner (55) | Backspace | NAV layer |
-| Right middle (56) | nothing | HRM layer |
+| Right middle (56) | Caps Word | HRM-R layer |
 | Right outer (57) | Delete | SYM layer |
 
 **Core rhythm:** your thumbs activate layers, your fingers type. You almost never need to reach for function keys or modifier rows.
@@ -64,38 +65,37 @@ Clean QWERTY. No home-row mods. The outer columns carry utility keys so your fin
 ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
 │  `~ ↕  │  1   │  2   │  3   │  4   │  5   │ │  6   │  7   │  8   │  9   │  0   │  =+ ↕  │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│ ALT/TAB│  Q   │  W   │  E   │  R   │  T   │ │  Y   │  U   │  I   │  O   │  P   │  -_ ↕  │
+│  LALT  │  Q   │  W   │  E   │  R   │  T   │ │  Y   │  U   │  I   │  O   │  P   │  -_ ↕  │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│ CTL/ESC│  A   │  S   │  D   │  F   │  G   │ │  H   │  J   │  K   │  L   │  ;   │ '"/Hyp │
+│ CTL/ESC│  A   │  S   │  D   │  F   │  G   │ │  H   │  J   │  K   │  L   │  ;   │  '" ↕  │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│  LSFT  │  Z   │  X   │  C   │  V   │  B   │ │  N   │  M   │  ,   │  .   │  /   │  () ↕  │
+│  LSFT  │  Z   │  X   │  C   │  V   │  B   │ │  N   │  M   │  ,   │  .   │  /   │  |\ ↕  │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │SYM/↵ │HRM/⇥ │NAV/␣ │ │NAV/⌫ │ nop  │SYM/⌦ │
+                       │SYM/↵ │HRM/⇥ │NAV/␣ │ │NAV/⌫↺│CapsW │SYM/⌦↺│
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
-↕ = tap-dance key
+↕ = tap-dance key (single-tap / double-tap)
+↺ = quick-tap repeats (tap then hold within 200ms for auto-repeat)
 ```
 
 ### Outer column details
 
 **Left outer column (failsafe modifiers — primary access is via HRM layer):**
-- `` ` `` / `~` — single tap / double tap
-- `LALT` — pure Alt/Option key (no hold-tap, no timing ambiguity)
-- `CTRL / ESC` — hold for Ctrl, tap for Escape (critical vim/terminal key, right next to the QWERTY row)
-- `LSFT` — dedicated Shift key next to Z
+- `` ` `` / `~` — single tap / double tap (pos 00)
+- `LALT` — pure Alt/Option key, no hold-tap, no timing ambiguity (pos 12)
+- `CTRL / ESC` — hold for Ctrl, tap for Escape; critical vim/terminal key next to A (pos 24)
+- `LSFT` — dedicated Shift key next to Z (pos 36)
 
 **Right outer column:**
-- `=` / `+` — single tap / double tap
-- `-` / `_` — single tap / double tap
-- `'` / `"` — single tap / double tap
-- `|` / `\` — single tap / double tap (pipe for shell pipelines; backslash for escape chars and Windows paths)
+- `=` / `+` — single tap / double tap (pos 11)
+- `-` / `_` — single tap / double tap (pos 23)
+- `'` / `"` — single tap / double tap (pos 35)
+- `|` / `\` — single tap / double tap; pipe for shell pipelines, backslash for escape chars (pos 49)
 
-### Combos (BASE layer only)
-| Press | Result |
-|-------|--------|
-| J + K simultaneously | Escape |
-| F + J simultaneously | Caps Word (type a whole word capitalized, then returns to normal) |
-| D + F simultaneously | Repeat last key |
-| Left NAV + Right NAV simultaneously | FN layer (works from any layer) |
+### Combos
+| Press | Active on | Result |
+|-------|-----------|--------|
+| Left NAV + Right NAV (52+55) | any layer | FN layer (momentary) |
+| Left SYM + Right SYM (50+57) | any layer | Hyper sticky key ⌘^⌥⇧ |
 
 ---
 
@@ -248,7 +248,7 @@ Left:  Q=`  W=~  E=@  R=#  T=$
 Right: Y=%  U=^  I=*  O=&  P=|
 ```
 
-Outer columns fall through to BASE tap-dances: `=`/`+`, `-`/`_`, `'`/`"`, `(`/`)`.
+Right outer col overrides in SYM: pos 11 = `+` (dedicated), pos 23 = `_` (dedicated). Left outer col and pos 35, 49 fall through to BASE tap-dances.
 
 ### SYM-layer digraph combos
 
@@ -268,20 +268,22 @@ Symmetric: left-side combos produce equality operators, right-side combos produc
 
 ## HRM Layer
 
-**Activate:** hold left middle thumb (TAB key) or right middle thumb (no-op key).
+**HRM is split into two layers:**
+- **HRM-L**: hold **left middle thumb** (TAB key, pos 51) → left home row becomes mods
+- **HRM-R**: hold **right middle thumb** (no-op key, pos 56) → right home row becomes mods
 
 Home-row modifiers without any timing issues. Unlike traditional HRM, there is no hold-tap ambiguity — you explicitly hold the HRM thumb before pressing the modifier key.
 
 ```
-A = LCTL   S = LALT   D = LGUI   F = LSFT   (left hand)
-J = RSFT   K = RGUI   L = RALT   ; = RCTL   (right hand)
+A = LCTL   S = LALT   D = LGUI   F = LSFT   (left hand, via HRM-L thumb)
+J = RSFT   K = RGUI   L = RALT   ; = RCTL   (right hand, via HRM-R thumb)
 ```
 
 ### How to use HRM
 
-1. **Hold** your middle thumb key (left for ASDF mods, right for JKL; mods, either for all)
-2. **Hold** the modifier key (A=Ctrl, S=Alt, D=Cmd, F=Shift)
-3. While both are held, **tap** the target key on the other hand
+1. **Hold** the appropriate middle thumb key (left thumb for ASDF mods, right thumb for JKL; mods)
+2. **Hold** the modifier key on the matching hand (A=Ctrl, S=Alt, D=Cmd/GUI, F=Shift)
+3. While both are held, **tap** the target key (typically on the other hand)
 
 The modifier is active as long as you physically hold the home-row key. Release it to deactivate.
 
@@ -289,15 +291,15 @@ The modifier is active as long as you physically hold the home-row key. Release 
 
 | Sequence | Result |
 |----------|--------|
-| Hold left HRM + hold A + tap W | ⌘W (close window) |
-| Hold left HRM + hold A + tap Tab | ⌘Tab (app switch) |
-| Hold left HRM + hold S + tap Tab | ⌥Tab (cycle windows in some apps) |
-| Hold left HRM + hold F + tap H | Shift+← (select left) |
-| Hold right HRM + hold J + tap C | Shift+C = capital C (when typing left-hand keys) |
-| Hold left HRM + hold D + hold F + tap any | ⌘⇧+key (e.g., ⌘⇧Z = Redo) |
+| Hold HRM-L thumb + hold A + tap W | ⌘W (close window) |
+| Hold HRM-L thumb + hold A + tap Tab | ⌘Tab (app switch) |
+| Hold HRM-L thumb + hold S + tap Tab | ⌥Tab (cycle windows in some apps) |
+| Hold HRM-L thumb + hold F + tap H | Shift+← (select left) |
+| Hold HRM-R thumb + hold J + tap C | Shift+C = capital C (when typing left-hand keys) |
+| Hold HRM-L thumb + hold D + hold F + tap any | ⌘⇧+key (e.g., ⌘⇧Z = Redo) |
 
 ### HRM + NAV bonus
-Hold **both** left middle thumb (HRM) and left inner thumb (NAV) simultaneously:
+Hold **both** left middle thumb (HRM-L) and left inner thumb (NAV) simultaneously:
 - HRM home row gives modifiers, NAV right hand gives arrows
 - HRM + A + Right = ⌘→ (end of line), without needing to be in JUMP mode
 - HRM + F + Down = Shift+↓ (select down one line)
@@ -316,9 +318,9 @@ System shortcuts adapt to OS mode. Windows default shown; Mac overrides in paren
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │ Brt-   │ Brt+ │AppSwt│Search│ Snip │TskVw │ │ |◀◀  │ ▶/▮▮ │ ▶▶|  │  🔇  │ Vol- │  Vol+  │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │Stdio │ │ 🖱←   │ 🖱↓   │ 🖱↑   │ 🖱→   │DblClk│DskRt │
+│  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │Stdio │ │ 🖱←  │ 🖱↓  │ 🖱↑  │ 🖱→  │DblClk│DskRt   │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│ OutTog │Reset │Boot⌛│ Lock │DskLft│BTClr │ │ 🖱L   │ 🖱R   │ 🖱M   │ ScUp │ ScDn │CapsWrd │
+│ Boot⌛ │Rst⌛ │OutTog│ Lock │DskLft│BTClr │ │ 🖱L  │ 🖱R  │ 🖱M  │ ScUp │ ScDn │ Boot⌛ │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
                        │      │      │      │ │      │ MAC  │      │
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
@@ -327,11 +329,11 @@ System shortcuts adapt to OS mode. Windows default shown; Mac overrides in paren
 | Key | Windows | Mac |
 |-----|---------|-----|
 | BT0–BT4 | Switch to Bluetooth profile 1–5 | same |
-| BTClr | Clear current BT pairing (placed far from BT4 to avoid accidents) | same |
+| BTClr | Clear current BT pairing | same |
 | OutTog | Toggle between USB and BLE output | same |
-| Studio | Unlock ZMK Studio (USB only — real-time keymap editing, pos 29 inner-G) | same |
-| Reset | Soft reset the controller | same |
-| Boot⌛ | Enter DFU bootloader — **hold for 2 seconds** (tap does nothing) | same |
+| Studio | Unlock ZMK Studio (USB only — real-time keymap editing, pos 29 / G key in FN) | same |
+| Rst⌛ | Soft reset — **hold for 1 second** (tap does nothing) | same |
+| Boot⌛ | Enter DFU bootloader — **hold for 2 seconds** (tap does nothing); on left outer (pos 36) and right outer (pos 49) | same |
 | AppSwt | App Switcher | Alt+Tab | ⌘Tab |
 | Search | Quick launch / assistant | Win+Return | ⌘Space (Spotlight) |
 | Snip | Screenshot / snip tool | Win+Shift+S | ⌃⇧⌘4 |
@@ -344,14 +346,13 @@ System shortcuts adapt to OS mode. Windows default shown; Mac overrides in paren
 | 🖱←↓↑→ | Mouse movement (HJKL home-row positions) | same |
 | 🖱L / 🖱R / 🖱M | Left / Right / Middle click | same |
 | ScUp / ScDn | Scroll wheel up / down | same |
-| CapsWrd | Caps Word — type ONE_WORD in caps, auto-cancels on space/enter | same |
 
 ---
 
 ## Common Workflows
 
 ### Vim / Terminal
-- **ESC**: tap `CTRL/ESC` key (left outer row 2, next to A) — or use `J+K` combo
+- **ESC**: tap `CTRL/ESC` key (left outer row 2, next to A)
 - **CTRL+key**: hold `CTRL/ESC` key + tap the other key
 - **Arrows**: hold NAV + HJKL
 - **Word jump**: hold NAV + D + H/L
@@ -399,14 +400,14 @@ System shortcuts adapt to OS mode. Windows default shown; Mac overrides in paren
 - Add JUMP mode (NAV+D) once NAV becomes natural — word-level movement dramatically reduces keystrokes
 - Learn HRM last — once you reach for modifiers constantly, HRM feels faster than physical modifier keys
 
-**The outer column hold-taps:**
-- `LALT` (pos 12): pure Alt/Option key — no timing involved, fires immediately.
+**The outer column keys:**
+- `LALT` (pos 12): pure Alt/Option key — no hold-tap, fires immediately on press.
 - `CTRL/ESC` (pos 24): quick tap = ESC (vim mode exit), firm hold = Ctrl. The most-used key on the board for developers.
 
 **Shift:**
 - For right-hand capitals: use `LSFT` (pos 36, next to Z) held with left pinky, then right-hand key
 - For left-hand capitals: HRM layer (right middle thumb) + J (RSFT), then press left-hand key
-- For a whole capital word: use Caps Word if re-enabled, or hold Shift while typing
+- For a whole capital word: tap **right middle thumb** (pos 56) — Caps Word activates, type the word, auto-cancels on Space/Enter/Escape
 
 **Hyper key:**
 - Press both SYM outer thumbs (RET thumb + DEL thumb) simultaneously

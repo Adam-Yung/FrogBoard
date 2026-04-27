@@ -17,11 +17,11 @@
  *          └──┴──┴──┘         └──┴──┴──┘
  *
  * ── Thumb cluster (outer → inner on each side) ────────────────────
- * Left  50=SYM/RET  51=HRM/TAB  52=NAV/SPC
- * Right 55=NAV/BSPC 56=HRM/nop  57=SYM/DEL
+ * Left  50=SYM/RET  51=HRM_L/TAB  52=NAV/SPC
+ * Right 55=NAV/BSPC 56=HRM_R/CapsWrd  57=SYM/DEL
  *
- * Tap  (left→right): RET · TAB · SPC | BSPC · nop · DEL
- * Hold (left→right): SYM · HRM · NAV | NAV  · HRM · SYM
+ * Tap  (left→right): RET · TAB · SPC | BSPC · CapsWrd · DEL
+ * Hold (left→right): SYM · HRM · NAV | NAV  · HRM_R   · SYM
  *
  * ── Outer column keys (BASE) ──────────────────────────────────────
  * LEFT  (top→bot): td(`~) · LALT       · mt(CTL,ESC) · LSFT
@@ -88,21 +88,21 @@
         td_equal_plus: td_equal_plus {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
             bindings = <&kp EQUAL>, <&kp PLUS>;
         };
         /* pos 23 — tap = -   double-tap = _                          */
         td_minus_under: td_minus_under {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
             bindings = <&kp MINUS>, <&kp UNDER>;
         };
         /* pos 35 — tap = '   double-tap = "                          */
         td_sqt_dqt: td_sqt_dqt {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
             bindings = <&kp SQT>, <&kp DQT>;
         };
 
@@ -110,13 +110,13 @@
         td_pipe_bslh: td_pipe_bslh {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
             bindings = <&kp PIPE>, <&kp BSLH>;
         };
 
         /* pos 55/57 — tap = BSPC/DEL  hold = NAV/SYM  tap-then-hold repeats
          * quick-tap-ms lets the OS handle auto-repeat: tap the key, then
-         * within 200 ms hold again → ZMK keeps the key pressed.    
+         * within 200 ms hold again → ZMK keeps the key pressed.
          */
         lt_del: lt_del {
             compatible = "zmk,behavior-hold-tap";
@@ -125,6 +125,18 @@
             quick-tap-ms = <200>;
             flavor = "balanced";
             bindings = <&mo>, <&kp>;
+        };
+
+        /* pos 56 — tap = Caps Word  hold = HRM_R layer
+         * Single-cell hold-tap: the one parameter is passed to &mo (the layer).
+         * Tap fires &caps_word (auto-capitalises one word, cancels on space/enter).
+         */
+        mo_caps: mo_caps {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <1>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+            bindings = <&mo>, <&caps_word>;
         };
 
         /* FN row 3 — hold-only soft reset (tap = no-op, hold 1 s)        */
@@ -247,7 +259,7 @@
          * ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
          * │  LSFT  │  Z   │  X   │  C   │  V   │  B   │ │  N   │  M   │  ,   │  .   │  /   │ |\ ↕   │
          * ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-         *                        │SYM/↵ │HRM/⇥ │NAV/␣ │ │NAV/⌫↺│ nop  │SYM/⌦↺│
+         *                        │SYM/↵ │HRM/⇥ │NAV/␣ │ │NAV/⌫↺│CapsW │SYM/⌦↺│
          *                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
          *
          * ↕ = tap-dance (single-tap / double-tap)
@@ -263,7 +275,7 @@
 &kp LALT           &kp Q    &kp W    &kp E    &kp R    &kp T                      &kp Y    &kp U    &kp I     &kp O    &kp P     &td_minus_under
 &mt LCTL ESC       &kp A    &kp S    &kp D    &kp F    &kp G                      &kp H    &kp J    &kp K     &kp L    &kp SEMI  &td_sqt_dqt
 &kp LSFT           &kp Z    &kp X    &kp C    &kp V    &kp B    &none    &none    &kp N    &kp M    &kp COMMA &kp DOT  &kp FSLH  &td_pipe_bslh
-                                     &lt SYM RET  &lt HRM_L TAB  &lt NAV SPACE  &none  &none  &lt_del NAV BSPC  &mo HRM_R  &lt_del SYM DEL
+                                     &lt SYM RET  &lt HRM_L TAB  &lt NAV SPACE  &none  &none  &lt_del NAV BSPC  &mo_caps HRM_R  &lt_del SYM DEL
             >;
         };
 
@@ -375,7 +387,7 @@
          * Win: Win+Ctrl+Right    Mac: Ctrl+Right (Spaces)
          * Row 3 left:  OutTog · Reset · Boot⌛ · Lock · DskLeft · BTClr
          * Win: Win+L · Win+Ctrl+Left   Mac: Ctrl+Cmd+Q · Ctrl+Left
-         * Row 3 right: Mouse clicks · Scroll · CapsWord
+         * Row 3 right: Mouse clicks · Scroll · Boot⌛ (right outer, hold 2 s)
          * Thumb pos 56: MAC_MODE toggle (switches between Win/Mac modes)
          *
          * ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮

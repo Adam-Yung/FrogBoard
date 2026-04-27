@@ -33,19 +33,20 @@ Thumb:  50 51 52 ×            |    × 55 56 57
 | 2 | SYM      | hold left outer thumb (50) or right outer thumb (57) |
 | 3 | FN       | both NAV thumbs simultaneously (52+55 combo) |
 | 4 | JUMP     | NAV active + hold D key (27) — word/line-level navigation |
-| 5 | HRM      | hold left middle thumb (51) or right middle thumb (56) |
-| 6 | MAC_MODE | `&tog MAC_MODE` at FN pos 56 — persistent OS mode flag (all &trans) |
-| 7 | NAV_MAC  | conditional: NAV + MAC_MODE active → Mac NAV shortcuts |
-| 8 | JUMP_MAC | conditional: JUMP + MAC_MODE active → Option+arrow word nav |
-| 9 | FN_MAC   | conditional: FN + MAC_MODE active → Mac system shortcuts |
+| 5 | HRM_L    | hold left middle thumb (51) — left-hand home row becomes mods |
+| 6 | HRM_R    | hold right middle thumb (56) — right-hand home row becomes mods |
+| 7 | MAC_MODE | `&tog MAC_MODE` at FN pos 56 — persistent OS mode flag (all &trans) |
+| 8 | NAV_MAC  | conditional: NAV + MAC_MODE active → Mac NAV shortcuts |
+| 9 | JUMP_MAC | conditional: JUMP + MAC_MODE active → Option+arrow word nav |
+| 10 | FN_MAC  | conditional: FN + MAC_MODE active → Mac system shortcuts |
 
 ## Thumb Cluster
 ```
-Left  (outer → inner): 50=SYM/RET  51=HRM/TAB  52=NAV/SPC
-Right (inner → outer): 55=NAV/BSPC 56=HRM/nop  57=SYM/DEL
+Left  (outer → inner): 50=SYM/RET  51=HRM_L/TAB  52=NAV/SPC
+Right (inner → outer): 55=NAV/BSPC 56=HRM_R/CapsWrd  57=SYM/DEL
 
-Tap actions  (left → right): RET · TAB · SPC | BSPC · nop · DEL
-Hold actions (left → right): SYM · HRM · NAV | NAV  · HRM · SYM
+Tap actions  (left → right): RET · TAB · SPC | BSPC · CapsWrd · DEL
+Hold actions (left → right): SYM · HRM · NAV | NAV  · HRM_R   · SYM
 ```
 
 ## Outer Column Keys (BASE layer)
@@ -68,25 +69,28 @@ Left outer column is a **failsafe fallback** for modifiers. Primary modifier acc
 | 35  | row of `;` | `'` | `"` |
 | 49  | row of `/` | `\|` (pipe) | `\` (backslash) |
 
-## HRM Layer (layer 5)
-Activated by holding either middle thumb. Home row becomes modifiers — no timing issues.
+## HRM Layers (layers 5 and 6 — HRM_L and HRM_R)
+HRM is split into two separate layers:
+- **HRM_L (layer 5)**: activated by holding left middle thumb (51). Left home row becomes mods.
+- **HRM_R (layer 6)**: activated by holding right middle thumb (56). Right home row becomes mods.
+
 ```
-A = LCTL   S = LALT   D = LGUI   F = LSFT   (left hand)
-J = RSFT   K = RGUI   L = RALT   ; = RCTL   (right hand)
+A = LCTL   S = LALT   D = LGUI   F = LSFT   (left hand, via HRM_L)
+J = RSFT   K = RGUI   L = RALT   ; = RCTL   (right hand, via HRM_R)
 ```
-- Hold HRM + A, then type right-hand key → Ctrl+key
-- Hold HRM + LSFT(F), then type → shift+key
+- Hold left HRM thumb (51) + A, then type right-hand key → Ctrl+key
+- Hold left HRM thumb (51) + F, then type → Shift+key
 - Hold HRM + NAV simultaneously → modifier+arrow navigation
 
-## OS Mode (layers 6–9)
+## OS Mode (layers 7–10)
 Default = **Windows / portable** (Ctrl shortcuts, Ctrl+arrow word nav).
 Toggle = `FN + pos56` (right middle thumb in FN layer) → `&tog MAC_MODE`.
 Display shows "mac" in base layer when Mac mode is active.
 
-`MAC_MODE` (layer 6) is an empty flag. When active, `conditional_layers` fires:
-- NAV + MAC_MODE → **NAV_MAC** (layer 7): Cmd shortcuts, Option+Del
-- JUMP + MAC_MODE → **JUMP_MAC** (layer 8): Option+arrow word nav
-- FN + MAC_MODE → **FN_MAC** (layer 9): Mac system shortcuts
+`MAC_MODE` (layer 7) is an empty flag. When active, `conditional_layers` fires:
+- NAV + MAC_MODE → **NAV_MAC** (layer 8): Cmd shortcuts, Option+Del
+- JUMP + MAC_MODE → **JUMP_MAC** (layer 9): Option+arrow word nav
+- FN + MAC_MODE → **FN_MAC** (layer 10): Mac system shortcuts
 
 **Mac nav caveats:** Home/End for line nav and Ctrl+Home/End for doc nav work
 in VS Code and most terminals; native Mac apps may use Cmd+arrow instead.
@@ -175,11 +179,15 @@ Outer cols in SYM = &trans (fall through to BASE tap-dances: =+, -_, '", ())
 | O+P | 21+22 | SYM | ` ``` ``` ` (triple backtick, cursor inside) |
 
 ## Behaviors Defined in lily58.keymap
-- `td_grave_tilde` — tap=\`, double=~ (pos 00)
-- `td_equal_plus` — tap==, double=+ (pos 11)
-- `td_minus_under` — tap=-, double=_ (pos 23)
-- `td_sqt_dqt` — tap=', double=" (pos 35)
-- `td_pipe_bslh` — tap=|, double=\\ (pos 49)
+- `td_grave_tilde` — tap=\`, double=~ (pos 00); tapping-term=200ms
+- `td_equal_plus` — tap==, double=+ (pos 11); tapping-term=100ms
+- `td_minus_under` — tap=-, double=_ (pos 23); tapping-term=100ms
+- `td_sqt_dqt` — tap=', double=" (pos 35); tapping-term=100ms
+- `td_pipe_bslh` — tap=|, double=\\ (pos 49); tapping-term=100ms
+- `lt_del` — custom hold-tap with quick-tap-ms=200 for auto-repeat on BSPC/DEL thumbs
+- `mo_caps` — 1-cell hold-tap: hold=`&mo` (layer), tap=`&caps_word`; used at pos 56 (right HRM thumb)
+- `ht_reset` — hold-only soft reset (tapping-term=1000ms, tap=no-op)
+- `ht_boot` — hold-only bootloader (tapping-term=2000ms, tap=no-op); used on pos 36 AND pos 49
 
 ## Macros in macros.dtsi
 Auto-close: `macro_parens` `macro_braces` `macro_brackets` `macro_quotes` `macro_dquotes` `macro_backticks` `macro_angles` `macro_triple_backtick`
@@ -214,8 +222,6 @@ USERGUIDE.md      — Human-readable keyboard usage guide
 - `#define NAV 1` etc. — layer numbers are preprocessor defines, use names not numbers in keymap.
 - `hold-trigger-on-release` is a valid ZMK hold-tap property (v3+).
 - `conditional_layers` block goes in the root `/` node, not inside `keymap {}`.
-- `ht_quotes_hyper` uses `#binding-cells = <0>` — both hold and tap bindings are statically fixed.
-  Fallback if compile fails: convert to 3-binding tap-dance (triple-tap = Hyper).
 
 ## Build
 Push to `main` → GitHub Actions builds `lily58_left` + `lily58_right` + `settings_reset` UF2 files.

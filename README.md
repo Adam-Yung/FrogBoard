@@ -44,7 +44,7 @@ Same finger on both hands = same bracket type. Bracket open on the left, close o
 ### Safety on destructive keys
 - **Bootloader** (UF2 flash mode): requires a **2-second hold** — taps do nothing
 - **Soft reset**: requires a **1-second hold** — taps do nothing
-- **BT clear**: placed on B, seven keys away from the nearest profile key
+- **BT clear**: placed at the inner col of row 3 left (B-column area), one row below BT4 — requires deliberate intent in FN layer
 
 ---
 

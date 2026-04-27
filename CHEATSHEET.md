@@ -197,7 +197,7 @@ Windows shortcuts shown. Mac overrides activate automatically in Mac mode.
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │  BT0   │  BT1 │  BT2 │  BT3 │  BT4 │Stdio │ │ 🖱←   │ 🖱↓   │ 🖱↑   │ 🖱→   │DblClk│DskRt │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│ OutTog │Rst⌛ │Boot⌛│ Lock │DskLft│BTClr │ │ 🖱L   │ 🖱R   │ 🖱M   │ ScUp │ ScDn │CapsWrd │
+│ Boot⌛ │Rst⌛ │OutTog│ Lock │DskLft│BTClr │ │ 🖱L   │ 🖱R   │ 🖱M   │ ScUp │ ScDn │ Boot⌛ │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
                        │      │      │      │ │      │ MAC  │      │
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
@@ -217,7 +217,7 @@ Windows shortcuts shown. Mac overrides activate automatically in Mac mode.
 | BTClr | Clear BT pairing on current profile | same |
 | Stdio | Unlock ZMK Studio (USB only) | same |
 | MAC | Toggle Windows ↔ Mac mode | same |
-| CapsWrd | Caps Word (auto-cancels after space/enter) | same |
+| Boot⌛ | Hold 2 s → UF2 bootloader (both left outer pos 36 and right outer pos 49) | same |
 
 ---
 
