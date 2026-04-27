@@ -81,28 +81,28 @@
         td_grave_tilde: td_grave_tilde {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
+            tapping-term-ms = <200>;
             bindings = <&kp GRAVE>, <&kp TILDE>;
         };
         /* pos 11 — tap = =   double-tap = +                          */
         td_equal_plus: td_equal_plus {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
+            tapping-term-ms = <200>;
             bindings = <&kp EQUAL>, <&kp PLUS>;
         };
         /* pos 23 — tap = -   double-tap = _                          */
         td_minus_under: td_minus_under {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
+            tapping-term-ms = <200>;
             bindings = <&kp MINUS>, <&kp UNDER>;
         };
         /* pos 35 — tap = '   double-tap = "                          */
         td_sqt_dqt: td_sqt_dqt {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
+            tapping-term-ms = <200>;
             bindings = <&kp SQT>, <&kp DQT>;
         };
 
@@ -110,7 +110,7 @@
         td_pipe_bslh: td_pipe_bslh {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
+            tapping-term-ms = <200>;
             bindings = <&kp PIPE>, <&kp BSLH>;
         };
 
@@ -135,7 +135,7 @@
         mo_caps: mo_caps {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <100>;
+            tapping-term-ms = <200>;
             flavor = "balanced";
             bindings = <&mo>, <&caps_word>;
         };
