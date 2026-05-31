@@ -1,50 +1,9 @@
-# Silakka54 ZMK Configuration
+# Silakka54 ZMK Firmware
 
-ZMK firmware for the **Silakka54** — a 54-key wireless split ergonomic keyboard built on the Lily58 platform.
+ZMK firmware for the **Silakka54** — a 54-key wireless split ergonomic keyboard built on the Lily58 platform with nice!nano v2 controllers and nice!view e-ink displays.
 
----
-
-## Overview
-
-The Silakka54 uses the Lily58 PCB with 4 keys omitted, giving 54 active keys across two halves. The keymap is designed around thumb-activated layers and a dedicated home-row modifier layer, so your hands almost never leave the home position for modifiers, navigation, symbols, or system controls.
-
-**→ For daily usage and key reference, see [USERGUIDE.md](USERGUIDE.md)**
-**→ For a printable at-a-glance layout, see [CHEATSHEET.md](CHEATSHEET.md)**
-
----
-
-## Highlights
-
-### Thumb-driven layer system
-Three thumb keys per hand, each with tap and hold:
-
-| Thumb | Tap | Hold |
-|-------|-----|------|
-| Left outer | Return | SYM layer |
-| Left middle | Tab | HRM-L layer |
-| Left inner | Space | NAV layer |
-| Right inner | Backspace | NAV layer |
-| Right middle | Caps Word | HRM-R layer |
-| Right outer | Delete | SYM layer |
-
-Hold both NAV thumbs simultaneously → FN layer. Hold both SYM thumbs → Hyper sticky key (⌘^⌥⇧).
-
-### Modifier layers (HRM-L / HRM-R) — no timing issues
-HRM is split into two layers. Holding the **left** middle thumb activates HRM-L (ASDF → CTRL/ALT/GUI/SHIFT). Holding the **right** middle thumb activates HRM-R (JKL; → RSFT/RGUI/RALT/RCTL). Tapping the right middle thumb fires Caps Word. No hold-tap ambiguity because the activation key is separate from the modifier keys.
-
-### Navigation layer (NAV) — hands stay home
-Full cursor navigation on the right hand (HJKL vim-style), editing shortcuts on the left (select all, undo, redo, cut/copy/paste, find, select word/line). Sub-layer JUMP activates word and line jumping by holding D while in NAV.
-
-### Windows / Mac OS toggle
-Default shortcuts are Windows/portable (Ctrl-based). A single key in the FN layer (right middle thumb) toggles Mac mode. When active, NAV, JUMP, and FN all automatically switch to Mac equivalents via ZMK conditional layers — no separate layer banks to manage. The display shows **"mac"** when Mac mode is on.
-
-### Symbol layer (SYM) — symmetric bracket pairs
-Same finger on both hands = same bracket type. Bracket open on the left, close on the right. Auto-close macros on the bottom row type both halves and park the cursor inside. Digraph combos (hold SYM + two adjacent keys) produce `!=`, `==`, `=>`, `->`, and triple-backtick blocks.
-
-### Safety on destructive keys
-- **Bootloader** (UF2 flash mode): requires a **2-second hold** — taps do nothing
-- **Soft reset**: requires a **1-second hold** — taps do nothing
-- **BT clear**: placed at the inner col of row 3 left (B-column area), one row below BT4 — requires deliberate intent in FN layer
+**[User Guide](USERGUIDE.md)** — learn how to use the keyboard, layer by layer
+**[Cheatsheet](CHEATSHEET.md)** — printable quick-reference with all layer diagrams
 
 ---
 
@@ -53,107 +12,175 @@ Same finger on both hands = same bracket type. Bracket open on the left, close o
 | Component | Part |
 |-----------|------|
 | MCU | nice!nano v2 (nRF52840, USB-C, LiPo charging) |
-| Display | nice!view (low-power e-ink, SPI) |
-| Shield | Lily58 (58-position matrix; 4 positions unused) |
-| Switch slots | MX-compatible (5-pin or 3-pin) |
-| Connectivity | Bluetooth 5.0 (5 profiles) + USB-C wired |
-| Battery | JST connector, voltage-monitored via ADC |
-
-### nice!nano v2
-The nice!nano is a Pro Micro-compatible wireless controller. Key specs relevant to this build:
-
-- **Wireless:** Bluetooth 5.0 LE via ZMK; connects to up to 5 devices via profile switching
-- **USB:** Acts as USB HID when plugged in; ZMK auto-selects USB or BLE output (toggleable via `OutTog` in FN layer)
-- **Charging:** Charges a connected LiPo over USB-C while the keyboard is in use
-- **Deep sleep:** Enabled — keyboard sleeps after inactivity to preserve battery; wakes on any keypress
-- **Bootloader:** Double-tap the reset pads (or use the hold key in firmware) to enter UF2 DFU mode
-
-### nice!view
-The nice!view is a Sharp Memory LCD driven over SPI. It draws ~5 µA idle, making it suitable for always-on display without meaningful battery impact.
-
-The screen shows three regions:
-- **Top:** Battery percentage bar · WPM graph · USB/BLE indicator
-- **Middle:** 5 Bluetooth profile circles (filled = selected, solid = connected, dashed = paired)
-- **Bottom:** Active layer name — shows **"mac"** at rest when Mac mode is toggled on
-
-### ZMK Studio
-Real-time keymap editing over USB without reflashing. Unlock with the **Studio** key (FN layer, inner-G position, row 2 left). Changes made in Studio are temporary unless exported and committed to the keymap file.
+| Display | nice!view (Sharp Memory LCD, SPI, ~5 µA idle) |
+| Shield | Lily58 (58-position matrix; 4 positions unused → 54 active keys) |
+| Switches | MX-compatible (5-pin or 3-pin) |
+| Connectivity | Bluetooth 5.0 LE (5 profiles) + USB-C wired |
+| Battery | LiPo via JST connector, voltage-monitored via ADC |
 
 ---
 
 ## Building
 
-Firmware is built automatically by GitHub Actions on every push to `main`. No local toolchain required for normal use.
-
 ### GitHub Actions (recommended)
 
-1. Fork or clone this repository
-2. Push any change to `main`
-3. GitHub Actions runs `.github/workflows/build.yml`
-4. Download artifacts from the Actions run:
-   - `lily58_left-nice_nano_v2-nice_view.uf2`
-   - `lily58_right-nice_nano_v2-nice_view.uf2`
-   - `settings_reset-nice_nano_v2.uf2`
+Firmware builds automatically on every push that changes files in `config/`, `build.yaml`, or `.github/workflows/build.yml`. No local toolchain required.
 
-The build matrix is defined in `build.yaml`.
+1. Fork or clone this repository
+2. Make your changes and push
+3. Go to the **Actions** tab — the Build workflow runs automatically
+4. Download the firmware artifacts from the completed run:
+   - `lily58_left-nice_nano_v2-zmk.uf2`
+   - `lily58_right-nice_nano_v2-zmk.uf2`
+   - `settings_reset-nice_nano_v2-zmk.uf2`
+
+You can also trigger a build manually via **Actions → Build → Run workflow**.
 
 ### Local build (optional)
 
-Follow the [ZMK Getting Started guide](https://zmk.dev/docs/development/setup) to install the Zephyr SDK and `west`. Then:
+Install the [Zephyr SDK and `west`](https://zmk.dev/docs/development/setup), then:
 
 ```sh
-west build -p -b nice_nano_v2 -- -DSHIELD="lily58_left nice_view_adapter_left nice_view"
-west build -p -b nice_nano_v2 -- -DSHIELD="lily58_right nice_view_adapter_right nice_view"
+# Left half
+west build -p -b nice_nano_v2 -- -DSHIELD="lily58_left nice_view_adapter nice_view"
+
+# Right half
+west build -p -b nice_nano_v2 -- -DSHIELD="lily58_right nice_view_adapter nice_view"
 ```
 
+Output UF2 files land in `build/zephyr/zmk.uf2`.
+
 ---
 
-## Installation
+## Flashing
 
-### First-time or settings reset
-If you're seeing pairing issues or switching from different firmware, flash `settings_reset` to both halves first (see steps below), then flash the main firmware.
+### First-time or recovery flash
 
-### Flashing
+If you're seeing pairing issues, switching from different firmware, or the keyboard is behaving unexpectedly, flash `settings_reset` to **both halves first** to clear stored settings, then flash the main firmware.
 
-1. **Enter bootloader mode** on the left half:
-   - Double-tap the reset pads quickly (within ~500 ms), **or**
-   - Hold the **Rst⌛** key in the FN layer for 1 second (soft reset), then double-tap, **or**
-   - Hold the **Boot⌛** key in the FN layer for 2 seconds (goes directly to UF2 mode)
+### Standard flashing procedure
+
+1. **Enter bootloader mode** on one half:
+   - **Hardware:** double-tap the reset pads quickly (within ~500 ms), or
+   - **Firmware:** hold the **Boot** key in the FN layer for 2 seconds (pos 36 left / pos 49 right)
 2. The half mounts as a USB drive named `NICENANO`
-3. Copy `lily58_left-nice_nano_v2-nice_view.uf2` to the drive — it ejects and reboots automatically
-4. Repeat steps 1–3 for the right half using the right `.uf2` file
+3. Copy the matching `.uf2` file (left or right) to the drive — it ejects and reboots automatically
+4. Repeat for the other half
 
-> **Note:** Flash one half at a time. The halves communicate over BLE; they do not need to be connected to each other during flashing.
+> Flash one half at a time. The halves communicate over BLE and do not need to be connected to each other during flashing.
 
-### Pairing to a new host
+### Soft reset vs bootloader
 
-1. Enter FN layer (press both NAV thumbs)
-2. Select a BT profile (BT0–BT4)
-3. Tap **BTClr** to clear any existing pairing on that slot
-4. Open Bluetooth settings on your device and pair to **Silakka54**
+| Method | How | Effect |
+|--------|-----|--------|
+| Soft reset (Rst) | FN layer, hold pos 37 for 1 second | Reboots the MCU (no flash) |
+| Bootloader (Boot) | FN layer, hold pos 36 or 49 for 2 seconds | Enters UF2 DFU mode for flashing |
+| Hardware reset | Double-tap reset pads | Enters UF2 DFU mode for flashing |
 
-Switch between paired devices by entering FN and tapping the corresponding profile key.
+Both Rst and Boot require a deliberate hold — taps do nothing, preventing accidental resets.
 
 ---
 
-## File Structure
+## Bluetooth Pairing
+
+1. Enter FN layer (press both inner thumbs simultaneously)
+2. Select a BT profile slot (BT0–BT4, positions 24–28 in FN layer)
+3. If the slot has a stale pairing, tap **BTClr** (pos 41) to clear it
+4. Open Bluetooth settings on your host device and pair to **Silakka54**
+
+Switch between paired devices by entering FN and tapping the corresponding profile key. Toggle between USB and BLE output with **OutTog** (pos 38).
+
+---
+
+## ZMK Studio
+
+ZMK Studio provides real-time keymap editing over USB without reflashing. Connect via USB, enter FN layer, and press the **Studio** key (pos 29, the G-column key) to unlock. Changes made in Studio are session-only unless exported.
+
+---
+
+## Keymap Overview
+
+The keymap uses a thumb-driven layer system with 12 layers total. See the [User Guide](USERGUIDE.md) for detailed usage instructions and the [Cheatsheet](CHEATSHEET.md) for at-a-glance diagrams.
+
+| Layer | Name | Activation |
+|-------|------|------------|
+| 0 | BASE | default (clean QWERTY) |
+| 1 | NAV | hold right inner thumb |
+| 2 | SYM | hold left or right outer thumb |
+| 3 | FN | both inner thumbs (combo) |
+| 4 | JUMP | NAV + HRM_L thumb (conditional) |
+| 5 | HRM_L | hold left middle thumb |
+| 6 | HRM_R | hold right middle thumb |
+| 7 | MAC_MODE | persistent OS mode toggle (all `&trans`) |
+| 8 | NAV_MAC | NAV + MAC_MODE (conditional) |
+| 9 | JUMP_MAC | JUMP + MAC_MODE (conditional) |
+| 10 | FN_MAC | FN + MAC_MODE (conditional) |
+| 11 | SYM_NUM | SYM + HRM_L thumb (conditional) |
+
+---
+
+## Source Code Structure
 
 ```
 config/
-  lily58.keymap     — all layers, behaviors, combos, conditional layers
-  macros.dtsi       — included inside behaviors{} in lily58.keymap
-  lily58.conf       — Kconfig: display, BT, sleep, mouse emulation
-  west.yml          — ZMK module manifest (points to ZMK fork/tag)
-build.yaml          — GitHub Actions build matrix
-USERGUIDE.md        — full usage guide with layer reference
-CHEATSHEET.md       — printable layer diagrams and quick reference
+  lily58.keymap     layers, behaviors, combos, conditional layers
+  macros.dtsi       macro definitions (included inside behaviors{} block)
+  lily58.conf       Kconfig: display, BT power, sleep, mouse, Studio
+  west.yml          ZMK module manifest (points to zmkfirmware/zmk v0.3)
+
+build.yaml          GitHub Actions build matrix (left, right, settings_reset)
+
+.github/
+  workflows/
+    build.yml       CI workflow — uses zmkfirmware's reusable build action
+
+CLAUDE.md           AI context and maintenance rules
+USERGUIDE.md        comprehensive keyboard usage guide
+CHEATSHEET.md       printable layer diagrams and quick reference
 ```
+
+### Key architectural details
+
+**`lily58.keymap`** is the main configuration file. It contains:
+- Layer definitions (all 12 layers, 58 bindings each — unused positions are `&none`)
+- Behavior definitions (hold-taps, tap-dances, mod-morphs)
+- Combo definitions (thumb combos, SYM-layer digraphs)
+- Conditional layer mappings (MAC_MODE overlays, JUMP, SYM_NUM)
+- `#include "macros.dtsi"` inside the `behaviors {}` block
+
+**`macros.dtsi`** is included **inside** the `behaviors {}` block in the keymap — it must not contain its own `/ { behaviors { } };` wrapper. It defines:
+- Auto-close macros (parentheses, brackets, quotes, backticks, angles, triple-backtick)
+- Digraph macros (thin arrow `->`, fat arrow `=>`, `==`, `!=`)
+- OS-specific editing macros (select word/line, doc top/bottom)
+- OS shortcut macros (cut/copy/paste/undo/redo, system commands for both Win and Mac)
+
+**`lily58.conf`** sets Kconfig options:
+- Display enabled with dedicated work queue
+- BT TX power boosted to +8 dBm for range
+- Deep sleep after 30 minutes idle
+- Mouse/pointing emulation enabled
+- ZMK Studio enabled (UART transport disabled)
+
+**`west.yml`** pins the ZMK version to `v0.3`.
+
+### Layer numbering
+
+Layer numbers are defined as preprocessor macros (`#define NAV 1`, etc.) — always use names, not raw numbers, in the keymap file.
+
+### Conditional layers
+
+MAC_MODE (layer 7) is an empty layer used purely as a flag. When toggled on, ZMK's `conditional_layers` block automatically activates platform-specific overlays:
+- NAV + MAC_MODE → NAV_MAC
+- JUMP + MAC_MODE → JUMP_MAC
+- FN + MAC_MODE → FN_MAC
+
+This means a single toggle switches all OS-dependent shortcuts at once without duplicating layer logic.
 
 ---
 
 ## Resources
 
 - [ZMK Documentation](https://zmk.dev/docs)
-- [ZMK Keycodes reference](https://zmk.dev/docs/keymaps/behaviors)
-- [nice!nano docs](https://nicekeyboards.com/docs/nice-nano/)
+- [ZMK Keycodes & Behaviors](https://zmk.dev/docs/keymaps/behaviors)
+- [nice!nano v2 docs](https://nicekeyboards.com/docs/nice-nano/)
 - [nice!view docs](https://nicekeyboards.com/docs/nice-view/)

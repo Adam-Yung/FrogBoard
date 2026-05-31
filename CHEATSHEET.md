@@ -2,6 +2,9 @@
 
 Quick reference for all layers. Print or keep open alongside your keyboard.
 
+For detailed explanations of each layer, see [USERGUIDE.md](USERGUIDE.md).
+For build/flash/install instructions, see [README.md](README.md).
+
 ---
 
 ## Key Position Map
