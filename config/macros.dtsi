@@ -253,3 +253,27 @@
     #binding-cells = <0>;
     bindings = <&kp MINUS>, <&kp GT>;
   };
+
+  /* ── SYM layer single-key digraphs ───────────────────────────────── */
+  macro_thin_arrow: macro_thin_arrow {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp MINUS>, <&kp GT>;
+  };
+  macro_fat_arrow_key: macro_fat_arrow_key {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp EQUAL>, <&kp GT>;
+  };
+
+  /* ── Doc navigation (Mac) ────────────────────────────────────────── */
+  macro_doc_top_mac: macro_doc_top_mac {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp LG(UP)>;
+  };
+  macro_doc_bot_mac: macro_doc_bot_mac {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp LG(DOWN)>;
+  };
