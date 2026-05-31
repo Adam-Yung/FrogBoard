@@ -51,6 +51,10 @@ Quick reference for all layers. Print or keep open alongside your keyboard.
 Combos:
   52 + 55 (inner + inner) → FN layer (momentary)
   50 + 57 (outer + outer) → Hyper sticky key (⌘^⌥⇧)
+
+Sub-modes (conditional layers via hold 51):
+  NAV + hold 51 → JUMP layer (word/page navigation)
+  SYM + hold 51 → SYM_NUM layer (shifted number symbols on home row)
 ```
 
 ---
@@ -80,95 +84,98 @@ Display shows **"mac"** at rest when Mac mode is active.
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │  LSFT  │  Z   │  X   │  C   │  V   │  B   │ │  N   │  M   │  ,   │  .   │  /   │  |\ ↕  │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │SYM/↵ │HRM/⇥ │NAV/␣ │ │NAV/⌫↺│CapsW │SYM/⌦↺│
+                       │SYM/↵ │HRM/⇥ │SFT/␣ │ │NAV/⌫*│CapsW │SYM/⌦*│
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
 ```
 
-↕ = tap-dance: single-tap / double-tap (right pinky: 100ms window; left `` `~ ``: 200ms)
-↺ = quick-tap repeats: tap then hold within 200ms for OS auto-repeat
-- `` `~ `` — backtick / tilde
-- `=+` — equals / plus
-- `-_` — minus / underscore
-- `'"` — single quote / double quote
-- `|\` — pipe / backslash
+↕ = tap-dance: single-tap / double-tap (right pinky: 200ms window)
+\* = mod-morph: Shift + tap = word-delete
 
 **Combos:**
-- Both NAV thumbs (52+55) → FN layer
+- Both inner thumbs (52+55) → FN layer
 - Both SYM thumbs (50+57) → Hyper sticky key (⌘^⌥⇧)
 
 ---
 
-## LAYER 1 — NAV  (hold inner thumb)
+## LAYER 1 — NAV  (hold right inner thumb)
 
-Windows shortcuts shown. Mac overlay activates automatically in Mac mode.
+WASD movement. Shortcuts adapt to OS mode.
 
 ```
 ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
 │        │      │      │      │      │      │ │      │      │      │      │      │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│        │ ⇧↵   │SelWrd│SelLn │ Redo │      │ │      │ PgUp │ PgDn │      │      │        │
+│        │ Home │  ↑   │ End  │SelLn │SelWrd│ │ Redo │      │      │      │      │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│        │SelAll│ Undo │[JUMP]│ LSFT │      │ │  ←   │  ↓   │  ↑   │  →   │ Find │        │
+│        │  ←   │  ↓   │  →   │ Find │      │ │      │ Bksp │ Del  │      │      │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│        │      │ Cut  │ Copy │Paste │      │ │      │      │^Home │^End  │      │        │
+│        │ Undo │ Cut  │ Copy │Paste │      │ │      │      │DocTop│DocBot│      │        │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │      │ LSFT │[NAV] │ │ DelW← │CapsW │ DelW→│
+                       │      │      │      │ │[NAV] │      │      │
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
 ```
 
 | Key | Win | Mac |
 |-----|-----|-----|
-| A | Ctrl+A (select all) | ⌘A |
-| S | Ctrl+Z (undo) | ⌘Z |
-| R | Ctrl+Y (redo) | ⌘⇧Z |
-| X/C/V | Ctrl+X/C/V | ⌘X/C/V |
-| ; | Ctrl+F (find) | ⌘F |
-| , / . | Ctrl+Home / Ctrl+End | same |
-| Thumb 55 | Ctrl+⌫ (del word back) | Opt+⌫ |
-| Thumb 57 | Ctrl+⌦ (del word fwd) | Opt+⌦ |
+| Q (Home) | Home | Home |
+| W | Up arrow | same |
+| E (End) | End | End |
+| A / S / D | Left / Down / Right | same |
+| R | Select Line (macro) | same (mac macro) |
+| T | Select Word (macro) | same (mac macro) |
+| F | Find (Ctrl+F) | Find (⌘F) |
+| Z | Undo (Ctrl+Z) | Undo (⌘Z) |
+| X / C / V | Cut / Copy / Paste (Ctrl) | ⌘X/C/V |
+| Y | Redo (Ctrl+Y) | Redo (⌘⇧Z) |
+| J / K | Backspace / Delete | same |
+| , / . | Ctrl+Home / Ctrl+End | ⌘↑ / ⌘↓ |
+
+**JUMP sub-mode:** hold 51 (HRM_L thumb) while in NAV → word/page navigation.
 
 ---
 
-## LAYER 4 — JUMP  (NAV + hold D)
+## LAYER 4 — JUMP  (NAV + hold 51)
 
-Word and line navigation. Adapts to OS mode.
+Word and page navigation. Adapts to OS mode.
 
 ```
 ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
 │        │      │      │      │      │      │ │      │      │      │      │      │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│        │      │      │      │      │      │ │      │      │      │      │      │        │
+│        │      │ PgUp │      │      │      │ │      │      │      │      │      │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│        │      │      │[JUMP]│ LSFT │      │ │ W←   │ Home │ End  │  W→  │      │        │
+│        │ W←   │ PgDn │  W→  │      │      │ │      │ WBksp│ WDel │      │      │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │        │      │      │      │      │      │ │      │      │      │      │      │        │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │      │      │      │ │(DelW←)│     │(DelW→)│  ← fall-through NAV
+                       │      │      │      │ │      │      │      │
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
 ```
 
 | Key | Win | Mac |
 |-----|-----|-----|
-| H (W←) | Ctrl+← (word back) | Opt+← |
-| L (W→) | Ctrl+→ (word fwd) | Opt+→ |
-| J | Home (line start) | same |
-| K | End (line end) | same |
+| A (W←) | Ctrl+← (word back) | Opt+← |
+| D (W→) | Ctrl+→ (word fwd) | Opt+→ |
+| W | Page Up | same |
+| S | Page Down | same |
+| J (WBksp) | Ctrl+⌫ (word bksp) | Opt+⌫ |
+| K (WDel) | Ctrl+⌦ (word del) | Opt+⌦ |
 
-Add **F** (shift) to select: `D+F+H/L` = select word, `D+F+J/K` = select to line boundary.
+Hold shift (52) while in JUMP for word-level selection.
 
 ---
 
 ## LAYER 2 — SYM  (hold outer thumb)
 
-Same finger on both hands = same bracket type. Left = open, right = close.
+Brackets radiate outward from center on row 1. Operators on home row.
 
 ```
 ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
-│        │      │      │      │      │      │ │      │      │      │      │      │   +    │
+│        │      │      │      │      │      │ │      │      │      │      │      │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│        │  `   │  ~   │  @   │  #   │  $   │ │  %   │  ^   │  *   │  &   │  |   │   _    │
+│        │  <   │  {   │  [   │  (   │  -   │ │  +   │  )   │  ]   │  }   │  >   │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
-│        │  <   │  [   │  {   │  (   │  =   │ │  !   │  )   │  }   │  ]   │  >   │        │
+│        │  |   │  \   │  /   │  ->  │  _   │ │  =   │  =>  │  ,   │  .   │  ?   │        │
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │        │ <>⬡  │ []⬡  │ {}⬡  │ ()⬡  │ ''⬡  │ │ ""⬡  │ ``⬡  │  ?   │  :   │  \   │        │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
@@ -178,6 +185,8 @@ Same finger on both hands = same bracket type. Left = open, right = close.
 
 ⬡ = auto-close (types pair, positions cursor inside)
 
+**SYM sub-mode:** hold 51 (HRM_L thumb) while in SYM → home row becomes !@#$%^&*()
+
 **SYM layer combos** (hold SYM, press adjacent keys):
 
 | Combo | Output |
@@ -186,15 +195,35 @@ Same finger on both hands = same bracket type. Left = open, right = close.
 | E+R (15+16) | `==` |
 | U+I (19+20) | `=>` |
 | I+O (20+21) | `->` |
-| O+P (21+22) | ` ```\|``` ` (triple backtick, cursor inside) |
+| O+P (21+22) | ` ``` ``` ` (triple backtick, cursor inside) |
+
+---
+
+## LAYER 11 — SYM_NUM  (SYM + hold 51)
+
+Shifted number symbols on home row. Everything else falls through to SYM.
+
+```
+╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
+│        │      │      │      │      │      │ │      │      │      │      │      │        │
+├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
+│        │  <   │  {   │  [   │  (   │  -   │ │  +   │  )   │  ]   │  }   │  >   │        │
+├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
+│        │  !   │  @   │  #   │  $   │  %   │ │  ^   │  &   │  *   │  (   │  )   │        │
+├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
+│        │ <>⬡  │ []⬡  │ {}⬡  │ ()⬡  │ ''⬡  │ │ ""⬡  │ ``⬡  │  ?   │  :   │  \   │        │
+╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
+                       │[SYM] │      │      │ │      │      │[SYM] │
+                       ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
+```
 
 ---
 
 ## LAYERS 5 & 6 — HRM-L / HRM-R  (hold middle thumb)
 
-Home row becomes modifiers. Zero timing ambiguity. HRM is split into two layers:
-- **HRM-L (layer 5)**: hold **left** middle thumb (pos 51) → ASDF become mods
-- **HRM-R (layer 6)**: hold **right** middle thumb (pos 56, also taps Caps Word) → JKL; become mods
+Home row becomes modifiers. Zero timing ambiguity.
+- **HRM-L (layer 5)**: hold left middle thumb (51) → ASDF become mods
+- **HRM-R (layer 6)**: hold right middle thumb (56) → JKL; become mods
 
 ```
 ╭────────┬──────┬──────┬──────┬──────┬──────╮ ╭──────┬──────┬──────┬──────┬──────┬────────╮
@@ -206,16 +235,15 @@ Home row becomes modifiers. Zero timing ambiguity. HRM is split into two layers:
 ├────────┼──────┼──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┼──────┼────────┤
 │        │      │      │      │      │      │ │      │      │      │      │      │        │
 ╰────────┴──────┴──────┼──────┼──────┼──────┤ ├──────┼──────┼──────┼──────┴──────┴────────╯
-                       │      │[HRM-L]│     │ │      │[HRM-R]│     │
+                       │      │[HRM] │      │ │      │[HRM] │      │
                        ╰──────┴──────┴──────╯ ╰──────┴──────┴──────╯
 ```
 
-Hold left thumb → hold ASDF mod → tap right-hand target. (Or right thumb → JKL; mod → tap left-hand target.)
-HRM + NAV simultaneously → modifier + arrow navigation.
+Hold HRM thumb → hold ASDF/JKL; mod → tap target on other hand.
 
 ---
 
-## LAYER 3 — FN  (both NAV thumbs together)
+## LAYER 3 — FN  (both inner thumbs together)
 
 Windows shortcuts shown. Mac overrides activate automatically in Mac mode.
 
@@ -236,14 +264,14 @@ Windows shortcuts shown. Mac overrides activate automatically in Mac mode.
 | Key | Win | Mac |
 |-----|-----|-----|
 | AppSwt | Alt+Tab | ⌘Tab |
-| Search | Win+Return (Android) | ⌘Space (Spotlight) |
+| Search | Win+Return | ⌘Space (Spotlight) |
 | Snip | Win+Shift+S | ⌃⇧⌘4 |
 | TskVw | Win+Tab (Task View) | ⌃↑ (Mission Control) |
 | Lock | Win+L | ⌃⌘Q |
 | DskLft | Win+Ctrl+← | Ctrl+← (Spaces) |
 | DskRt | Win+Ctrl+→ | Ctrl+→ (Spaces) |
-| Rst⌛ | Hold 1 s → soft reset (pos 37, left outer row 3) | same |
-| Boot⌛ | Hold 2 s → UF2 bootloader — on both pos 36 (left outer) and pos 49 (right outer) | same |
+| Rst⌛ | Hold 1 s → soft reset (pos 37) | same |
+| Boot⌛ | Hold 2 s → UF2 bootloader — pos 36 (left) AND pos 49 (right) | same |
 | BTClr | Clear BT pairing on current profile | same |
 | Stdio | Unlock ZMK Studio (USB only) | same |
 | MAC | Toggle Windows ↔ Mac mode | same |
@@ -254,8 +282,8 @@ Windows shortcuts shown. Mac overrides activate automatically in Mac mode.
 
 | Chord | Layer | Output |
 |-------|-------|--------|
-| NAV + NAV (52+55) | any | FN layer |
-| SYM + SYM (50+57) | any | Hyper (⌘^⌥⇧) sticky |
+| 52+55 (inner thumbs) | any | FN layer |
+| 50+57 (outer thumbs) | any | Hyper (⌘^⌥⇧) sticky |
 | W+E | SYM | `!=` |
 | E+R | SYM | `==` |
 | U+I | SYM | `=>` |
@@ -268,41 +296,43 @@ Windows shortcuts shown. Mac overrides activate automatically in Mac mode.
 
 ### Navigation (any OS)
 ```
-Arrow keys     →  NAV + HJKL
-Page up/down   →  NAV + U/I
-Word jump      →  NAV + D, then H/L
-Line start/end →  NAV + D, then J/K
+Arrow keys     →  NAV + WASD
+Page up/down   →  NAV + hold 51, then W/S
+Word jump      →  NAV + hold 51, then A/D
 Doc start/end  →  NAV + , / .
-Shift-select   →  NAV + F + arrow (or JUMP + F + H/J/K/L)
+Shift-select   →  hold 52 (Shift) + NAV arrows
 ```
 
 ### Editing (shortcuts adapt to OS mode)
 ```
-Select all   →  NAV + A
-Undo / Redo  →  NAV + S / R
+Select all   →  not on layer (use HRM + A for Ctrl+A / ⌘A)
+Undo / Redo  →  NAV + Z / Y
 Cut/Copy/Paste → NAV + X / C / V
-Find         →  NAV + ;
-Select word  →  NAV + W
-Select line  →  NAV + E
-Del word ←   →  NAV thumb 55
-Del word →   →  NAV thumb 57
+Find         →  NAV + F
+Select word  →  NAV + T
+Select line  →  NAV + R
+Del word ←   →  Shift + BSPC (mod-morph), or JUMP + J
+Del word →   →  Shift + DEL (mod-morph), or JUMP + K
+Backspace    →  NAV + J
+Delete       →  NAV + K
 ```
 
 ### Modifiers (HRM-L / HRM-R layers)
 ```
-Ctrl + key   →  hold left thumb (HRM-L) + A, tap target
-Alt  + key   →  hold left thumb (HRM-L) + S, tap target
-Cmd  + key   →  hold left thumb (HRM-L) + D, tap target
-Shift + key  →  hold left thumb (HRM-L) + F, tap target
-Ctrl+Shift   →  hold left thumb (HRM-L) + A + F, tap target
-RShift + key →  hold right thumb (HRM-R) + J, tap target
-Caps Word    →  tap right thumb (HRM-R)
+Ctrl + key   →  hold 51 (HRM-L) + A, tap target
+Alt  + key   →  hold 51 (HRM-L) + S, tap target
+Cmd  + key   →  hold 51 (HRM-L) + D, tap target
+Shift + key  →  hold 51 (HRM-L) + F, tap target
+Ctrl+Shift   →  hold 51 (HRM-L) + A + F, tap target
+RShift + key →  hold 56 (HRM-R) + J, tap target
+Caps Word    →  tap 56 (right middle thumb)
 ```
 
 ### Symbols
 ```
-Brackets     →  SYM + home row (A<  S[  D{  F(  G=  H!  J)  K}  L]  ;>)
-Auto-close   →  SYM + bottom row (Z<> X[] C{} V() B'' N"" M``)
-Special      →  SYM + top row   (Q`  W~  E@  R#  T$  Y%  U^  I*  O&  P|)
-Digraphs     →  hold SYM + W+E!=  E+R==  U+I=>  I+O->
+Brackets     →  SYM + row 1 (Q<  W{  E[  R(  T-  Y+  U)  I]  O}  P>)
+Operators    →  SYM + home row (A|  S\  D/  F->  G_  H=  J=>  K,  L.  ;?)
+Num symbols  →  SYM + hold 51 (home row: !@#$%^&*())
+Auto-close   →  SYM + row 3 (Z<> X[] C{} V() B'' N"" M``)
+Digraphs     →  SYM + W+E!=  E+R==  U+I=>  I+O->
 ```
