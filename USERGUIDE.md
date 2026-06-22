@@ -139,7 +139,7 @@ These provide one-handed modifier access when your left hand is on the mouse:
 
 ```
 Left (outer → inner):  50=BOARD  51=LSFT  52=SPC
-Right (inner → outer): 55=NAV    56=SYM   57=FN
+Right (inner → outer): 55=MOD    56=SYM   57=FN
 ```
 
 | Thumb | Action |
@@ -425,7 +425,7 @@ The BOARD layer provides system controls, Bluetooth management, mouse emulation,
 | S | Mouse down |
 | D | Mouse right |
 
-Hold Space (pos 52) while in BOARD layer for **3x mouse speed** (fast cursor mode).
+Hold Space (pos 51) while in BOARD layer for **3x mouse speed** (fast cursor mode).
 
 #### System and firmware
 
@@ -440,6 +440,16 @@ Hold Space (pos 52) while in BOARD layer for **3x mouse speed** (fast cursor mod
 The bootloader and reset keys require deliberate holds — tapping does nothing. You cannot trigger them accidentally.
 
 ---
+
+### MOD Layer (hold right inner thumb, pos 55)
+
+One-hand modifier access. Hold pos 55, then use left thumb keys as modifiers:
+
+- Left outer thumb (pos 50) = Ctrl
+- Left middle thumb (pos 51) = Alt
+- Left inner thumb (pos 52) = Cmd/GUI
+
+All other keys pass through to base layer, so you can hold MOD + left thumb modifier + any letter key for shortcuts.
 
 ## Mac Mode
 
@@ -473,7 +483,7 @@ Mac mode automatically overrides navigation shortcuts through conditional layers
 
 | Keys pressed simultaneously | Result |
 |----------------------------|--------|
-| Shift thumb (pos 51) + SYM thumb (pos 56) | Hyper sticky key (Ctrl+Alt+Cmd+Shift applied to next keypress) |
+| BOARD thumb (pos 50) + FN thumb (pos 57) | Hyper sticky key (Ctrl+Alt+Cmd+Shift applied to next keypress) |
 
 The Hyper key fires as a **sticky modifier** — press the combo, release, then tap your target key. The Hyper+key combo fires once. This is useful for app-specific shortcuts in tools like Raycast, BetterTouchTool, or Hammerspoon, since no standard application uses all four modifiers simultaneously.
 

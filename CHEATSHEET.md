@@ -1,8 +1,8 @@
 # Silakka54 Cheatsheet
 
 ## Thumb Cluster
-Left: BOARD(hold) | LSFT | SPACE
-Right: NAV(hold) | SYM(hold) | FN(hold)
+Left: BOARD(hold) | SPACE | NAV(hold)
+Right: MOD(hold) | SYM(hold) | FN(hold)
 
 ## BASE Layer
 ```
@@ -10,7 +10,7 @@ Right: NAV(hold) | SYM(hold) | FN(hold)
  TAB   Q    W    E    R    T   │   Y    U    I    O    P    -_
  ESC   A    S    D    F    G   │   H    J    K    L    ;:   '"
  LSF   Z    X    C    V    B   │   N    M   GUI  ALT  CTL  RSF
-              BRD  LSF  SPC    │  NAV  SYM   FN
+              BRD  SPC  NAV    │  MOD  SYM   FN
 ```
 - Outer columns use tap-dance: `~ =+ -_ '" (tap/double-tap)
 - ;: is also tap-dance (tap=; double=:)
@@ -21,10 +21,10 @@ Right: NAV(hold) | SYM(hold) | FN(hold)
  ___   ___  ___  ___  ___  ___ │  ___  ___  ___  ___  ___  ___
  ___  HOME   ↑   END SelLn SelW│ Redo  ___  ___  ___  ___  ___
 S-Ret  ←     ↓    →   C-F  ___ │  ___  BSP  DEL  ___  ___  ___
- LSF  Undo  Cut  Copy Pst  ___ │  ___  ___  Top  Bot  ___  ___
-              ___  ___ JUMP*   │  [NAV] ___  ___
+ LSF  Undo  Cut  Copy Pst  ___ │  ___  ___  Top Bot  ___  ___
+              ___  ___ JUMP*   │  SMOD  ___  ___
 ```
-*JUMP = hold Space for word/page sub-mode
+*JUMP = hold pos 55 (right inner thumb) for word/page sub-mode in NAV
 Top = Ctrl+Home, Bot = Ctrl+End
 
 ## JUMP Sub-mode (NAV + hold Space)
@@ -66,15 +66,25 @@ SNIP = GUI+Shift+S (screenshot, both OS)
  ___  LCK   M↑  RCK  ___  ___ │  ___  ___  ___  ___  ___  OUT
  ___   M←   M↓   M→  ___  ___ │  ___  ___  ___  ___  ___  STU
 BOOT  RST  ___  ___  ___  ___  │  ___  MAC  ___  ___  ___ BOOT
-             [BRD] ___ FAST*   │  ___  ___  ___
+             [BRD] FAST* ___   │  ___  ___  ___
 ```
-*FAST = hold Space for 3x mouse speed
+*FAST = hold Space (pos 51) for 3x mouse speed
 BOOT = hold 2s for bootloader
 RST = hold 1s for soft reset
 OUT = toggle USB/BLE
 STU = ZMK Studio unlock
 MAC = toggle Mac Mode
 LCK/RCK = left/right mouse click
+
+## MOD Layer (hold pos 55)
+```
+ ___  ___  ___  ___  ___  ___  │  ___  ___  ___  ___  ___  ___
+ ___  ___  ___  ___  ___  ___  │  ___  ___  ___  ___  ___  ___
+ ___  ___  ___  ___  ___  ___  │  ___  ___  ___  ___  ___  ___
+ ___  ___  ___  ___  ___  ___  │  ___  ___  ___  ___  ___  ___
+             CTL  ALT  CMD    │ [MOD] ___  ___
+```
+Hold right inner thumb: left thumb = Ctrl/Alt/Cmd modifiers.
 
 ## Mac Mode
 Toggle from BOARD layer (M key position). Overrides:
@@ -85,7 +95,7 @@ Toggle from BOARD layer (M key position). Overrides:
 ## Combo
 | Keys | Action |
 |------|--------|
-| LSFT thumb + SYM thumb (51+56) | Hyper sticky (Cmd+Ctrl+Alt+Shift) |
+| BOARD + FN thumbs (50+57) | Hyper sticky (Cmd+Ctrl+Alt+Shift) |
 
 ## Quick Reference
 | Need... | Do... |

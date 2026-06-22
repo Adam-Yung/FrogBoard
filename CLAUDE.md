@@ -30,23 +30,24 @@ Thumb: 50 51 52 × | × 55 56 57
 | # | Name | Activation |
 |---|------|------------|
 | 0 | BASE | default |
-| 1 | NAV | hold pos 55 (right inner thumb) |
+| 1 | NAV | hold pos 52 (left inner thumb) |
 | 2 | SYM | hold pos 56 (right middle thumb) |
 | 3 | FN | hold pos 57 (right outer thumb) |
-| 4 | JUMP | conditional: NAV + SPACE_MOD (hold 55 + hold 52 in NAV) |
+| 4 | JUMP | conditional: NAV + SPACE_MOD (hold 52 + hold 55 in NAV) |
 | 5 | BOARD | hold pos 50 (left outer thumb) |
 | 6 | MAC_MODE | `&tog MAC_MODE` (empty flag, all `&trans`) |
 | 7 | NAV_MAC | conditional: NAV + MAC_MODE |
 | 8 | JUMP_MAC | conditional: JUMP + MAC_MODE |
-| 9 | SPACE_MOD | helper layer (all `&trans`) activated by pos 52 override in NAV/BOARD |
+| 9 | SPACE_MOD | helper layer (all `&trans`) activated by pos 55 in NAV / pos 51 in BOARD |
 | 10 | BOARD_FAST | conditional: BOARD + SPACE_MOD |
+| 11 | MOD | hold pos 55 (right inner thumb) — modifier thumbs |
 
 ## Thumb Cluster
 ```
-Left (outer → inner): 50=BOARD(hold)  51=SHIFT  52=SPACE
-Right (inner → outer): 55=NAV(hold)   56=SYM(hold)  57=FN(hold)
+Left (outer → inner): 50=BOARD(hold)  51=SPACE  52=NAV(hold)
+Right (inner → outer): 55=MOD(hold)   56=SYM(hold)  57=FN(hold)
 
-Tap actions (left → right): (hold only) · LSFT · SPACE | (hold only) · (hold only) · (hold only)
+Tap actions (left → right): (hold only) · SPACE · (hold only) | (hold only) · (hold only) · (hold only)
 ```
 
 ## Base Layer
@@ -55,7 +56,7 @@ Row 0: `~ td  1   2   3   4   5   |  6   7   8   9   0  =+ td
 Row 1: TAB    Q   W   E   R   T   |  Y   U   I   O   P  -_ td
 Row 2: ESC    A   S   D   F   G   |  H   J   K   L  ;: td  '" td
 Row 3: LSFT   Z   X   C   V   B   |  N   M  GUI  ALT CTL  RSFT
-Thumb:       BOARD LSFT SPC        | NAV  SYM  FN
+Thumb:       BOARD SPC  NAV        | MOD  SYM  FN
 ```
 
 Key notes:
@@ -74,12 +75,12 @@ Key notes:
 
 **Right hand:**
 - `Y` = Redo `J` = Bksp `K` = Del
-- pos 46 (`,`) = Ctrl+Home (doc top), pos 47 (`.`) = Ctrl+End (doc bottom)
+- pos 44 (`N`) = Ctrl+Home (doc top), pos 45 (`M`) = Ctrl+End (doc bottom)
 
 **Special:**
 - pos 24 = Shift+Enter
 - pos 36 = plain LSFT (for shift-selection)
-- pos 52 = `&mo SPACE_MOD` (activates JUMP conditional when held)
+- pos 55 = `&mo SPACE_MOD` (activates JUMP conditional when held)
 
 ## JUMP Layer (layer 4) — conditional NAV + SPACE_MOD
 Hold Space while in NAV for word/page navigation:
@@ -127,10 +128,19 @@ Right outer column: pos 23 = F12, pos 35 = F13
 **Safety:** pos 36 = bootloader (hold 2s), pos 37 = reset (hold 1s), pos 49 = bootloader (hold 2s)
 **Mouse:** `Q`=LeftClick `W`=MouseUp `E`=RightClick `A`=MouseLeft `S`=MouseDown `D`=MouseRight
 **Mac toggle:** pos 45 = `&tog MAC_MODE`
-**Fast mouse:** hold Space (pos 52 = `&mo SPACE_MOD`) for 3× speed via BOARD_FAST conditional
+**Fast mouse:** hold Space (pos 51 = `&mo SPACE_MOD`) for 3× speed via BOARD_FAST conditional
 
 ## BOARD_FAST Layer (layer 10) — conditional BOARD + SPACE_MOD
 Only overrides WASD mouse positions with 3× speed (MOVE_Y/X at 1800 vs default 600).
+
+
+## MOD Layer (layer 11) — Modifier Thumbs
+Hold pos 55 (right inner thumb). Everything `&trans` except left thumb becomes modifiers:
+- pos 50 = LCTRL
+- pos 51 = LALT
+- pos 52 = LGUI
+
+Use case: hold right inner thumb, left thumb cluster gives Ctrl/Alt/Cmd for one-hand modifier combos.
 
 ## OS Mode (layers 6–8)
 Default = **Windows / portable** (Ctrl shortcuts, Ctrl+arrow word nav).
@@ -156,7 +166,7 @@ Display shows "mac" in base layer when Mac mode is active.
 ## Combos
 | Keys | Positions | Output |
 |------|-----------|--------|
-| Shift + SYM thumbs | 51+56 | Hyper sticky key ⌘^⌥⇧ (`&sk`) |
+| BOARD + FN thumbs | 50+57 | Hyper sticky key ⌘^⌥⇧ (`&sk`) |
 
 ## Behaviors
 - `td_grave_tilde` — tap=`` ` ``, double=`~` (pos 00); tapping-term=200ms
@@ -178,7 +188,7 @@ Win shortcuts: `Win_Cut` `Win_Copy` `Win_Paste` `Win_Undo` `Win_Redo`
 Three regions on screen:
 - **Top**: Battery % bar + WPM graph + USB/BLE indicator
 - **Middle**: 5 Bluetooth profile circles (solid=connected, dashed=paired, filled=selected)
-- **Bottom**: Active layer name (base / nav / sym / fn / jump / board / **mac** / nav-mac / jmp-mac / smod / brd-fst)
+- **Bottom**: Active layer name (base / nav / sym / fn / jump / board / **mac** / nav-mac / jmp-mac / smod / brd-fst / mod)
   - "mac" shows in base when MAC_MODE toggle is on — visual OS mode indicator
 
 ## File Layout

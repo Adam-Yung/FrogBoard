@@ -16,6 +16,7 @@
 #define JUMP_MAC   8
 #define SPACE_MOD  9
 #define BOARD_FAST 10
+#define MOD        11
 
 /* ── Fast mouse speed defines ──────────────────────────────────────────── */
 #define FAST_UP MOVE_Y(-1800)
@@ -81,7 +82,7 @@
     compatible = "zmk,combos";
     combo_hyper {
       timeout-ms = <50>;
-      key-positions = <51 56>;
+      key-positions = <50 57>;
       bindings = <&sk LS(LC(LA(LGUI)))>;
     };
   };
@@ -118,7 +119,7 @@
      * │  TAB  Q    W    E    R    T        Y    U    I    O    P   -_   │
      * │  ESC  A    S    D    F    G        H    J    K    L   ;:   '"   │
      * │  LSF  Z    X    C    V    B  ×  ×  N    M   GUI  ALT CTL  RSF  │
-     * │            BRD  LSF  SPC  ×        ×   NAV  SYM  FN            │
+     * │            BRD  SPC  NAV  ×        ×   MOD  SYM  FN            │
      * └─────────────────────────────────────────────────────────────────┘ */
     base_layer {
       display-name = "base";
@@ -127,7 +128,7 @@
         &kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T               &kp Y  &kp U  &kp I  &kp O  &kp P  &td_minus_under
         &kp ESC  &kp A  &kp S  &kp D  &kp F  &kp G               &kp H  &kp J  &kp K  &kp L  &td_semi_colon &td_sqt_dqt
         &kp LSFT &kp Z  &kp X  &kp C  &kp V  &kp B  &none &none  &kp N  &kp M  &kp LGUI &kp LALT &kp LCTRL &kp RSFT
-                        &mo BOARD &kp LSFT &kp SPACE &none         &none  &mo NAV &mo SYM &mo FN
+                        &mo BOARD &kp SPACE &mo NAV &none           &none  &mo MOD &mo SYM &mo FN
       >;
     };
 
@@ -146,8 +147,8 @@
         &trans &trans   &trans  &trans  &trans             &trans                &trans    &trans   &trans  &trans  &trans  &trans
         &trans &kp HOME &kp UP &kp END &macro_sel_line_win &macro_sel_word_win  &Win_Redo &trans   &trans  &trans  &trans  &trans
         &kp LS(RET) &kp LEFT &kp DOWN &kp RIGHT &kp LC(F) &trans               &trans    &kp BSPC &kp DEL &trans  &trans  &trans
-        &kp LSFT &Win_Undo &Win_Cut &Win_Copy &Win_Paste &trans &none &none    &trans    &trans   &kp LC(HOME) &kp LC(END) &trans &trans
-                        &trans &trans &mo SPACE_MOD &none                        &none     &trans   &trans  &trans
+        &kp LSFT &Win_Undo &Win_Cut &Win_Copy &Win_Paste &trans &none &none    &kp LC(HOME) &kp LC(END) &trans &trans &trans &trans
+                        &trans &trans &trans &none                                &none     &mo SPACE_MOD &trans  &trans
       >;
     };
 
@@ -228,7 +229,7 @@
         &trans        &mkp LCLK      &mmv MOVE_UP    &mkp RCLK       &trans       &trans           &trans &trans        &trans &trans &trans &out OUT_TOG
         &trans        &mmv MOVE_LEFT &mmv MOVE_DOWN  &mmv MOVE_RIGHT &trans       &trans           &trans &trans        &trans &trans &trans &studio_unlock
         &ht_boot 0 0  &ht_reset 0 0 &trans          &trans          &trans       &trans &none &none &trans &tog MAC_MODE &trans &trans &trans &ht_boot 0 0
-                                     &trans          &trans          &mo SPACE_MOD &none           &none  &trans        &trans &trans
+                                     &trans          &mo SPACE_MOD   &trans &none           &none  &trans        &trans &trans
       >;
     };
 
@@ -262,7 +263,7 @@
         &trans &trans     &trans   &trans    &trans          &trans              &trans    &trans &trans             &trans             &trans &trans
         &trans &trans     &trans   &trans    &macro_sel_line &macro_sel_word     &Mac_Redo &trans &trans             &trans             &trans &trans
         &trans &trans     &trans   &trans    &Mac_Find       &trans              &trans    &trans &trans             &trans             &trans &trans
-        &trans &Mac_Undo  &Mac_Cut &Mac_Copy &Mac_Paste     &trans &none &none  &trans    &trans &macro_doc_top_mac &macro_doc_bot_mac &trans &trans
+        &trans &Mac_Undo  &Mac_Cut &Mac_Copy &Mac_Paste     &trans &none &none  &macro_doc_top_mac &macro_doc_bot_mac &trans &trans &trans &trans
                           &trans   &trans    &trans          &none               &none     &trans &trans             &trans
       >;
     };
@@ -320,6 +321,27 @@
         &trans &mmv FAST_LT &mmv FAST_DN &mmv FAST_RT &trans &trans            &trans &trans &trans &trans &trans &trans
         &trans &trans       &trans       &trans       &trans &trans &none &none &trans &trans &trans &trans &trans &trans
                             &trans       &trans       &trans &none              &none  &trans &trans &trans
+      >;
+    };
+
+    /* ┌─────────────────────────────────────────────────────────────────┐
+     * │ LAYER 11 — MOD (hold pos 55, modifier thumbs)                  │
+     * │ Everything transparent except left thumb = Ctrl/Alt/Cmd         │
+     * ├─────────────────────────────────────────────────────────────────┤
+     * │  ___  ___  ___  ___  ___  ___      ___  ___  ___  ___  ___  ___ │
+     * │  ___  ___  ___  ___  ___  ___      ___  ___  ___  ___  ___  ___ │
+     * │  ___  ___  ___  ___  ___  ___      ___  ___  ___  ___  ___  ___ │
+     * │  ___  ___  ___  ___  ___  ___×  × ___  ___  ___  ___  ___  ___  │
+     * │           CTL  ALT  CMD  ×        ×   [MOD] ___  ___            │
+     * └─────────────────────────────────────────────────────────────────┘ */
+    mod_layer {
+      display-name = "mod";
+      bindings = <
+        &trans &trans &trans &trans &trans &trans      &trans &trans &trans &trans &trans &trans
+        &trans &trans &trans &trans &trans &trans      &trans &trans &trans &trans &trans &trans
+        &trans &trans &trans &trans &trans &trans      &trans &trans &trans &trans &trans &trans
+        &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans
+                      &kp LCTRL &kp LALT &kp LGUI &none   &none  &trans &trans &trans
       >;
     };
   };
