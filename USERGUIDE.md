@@ -425,7 +425,7 @@ The BOARD layer provides system controls, Bluetooth management, mouse emulation,
 | S | Mouse down |
 | D | Mouse right |
 
-Hold Space (pos 51) while in BOARD layer for **3x mouse speed** (fast cursor mode).
+Hold pos 55 (right inner thumb) while in BOARD layer for **3x mouse speed** (fast cursor mode).
 
 #### System and firmware
 

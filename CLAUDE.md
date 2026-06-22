@@ -38,7 +38,7 @@ Thumb: 50 51 52 × | × 55 56 57
 | 6 | MAC_MODE | `&tog MAC_MODE` (empty flag, all `&trans`) |
 | 7 | NAV_MAC | conditional: NAV + MAC_MODE |
 | 8 | JUMP_MAC | conditional: JUMP + MAC_MODE |
-| 9 | SPACE_MOD | helper layer (all `&trans`) activated by pos 55 in NAV / pos 51 in BOARD |
+| 9 | SPACE_MOD | helper layer (all `&trans`) activated by pos 55 in NAV and BOARD |
 | 10 | BOARD_FAST | conditional: BOARD + SPACE_MOD |
 | 11 | MOD | hold pos 55 (right inner thumb) — modifier thumbs |
 
@@ -128,7 +128,7 @@ Right outer column: pos 23 = F12, pos 35 = F13
 **Safety:** pos 36 = bootloader (hold 2s), pos 37 = reset (hold 1s), pos 49 = bootloader (hold 2s)
 **Mouse:** `Q`=LeftClick `W`=MouseUp `E`=RightClick `A`=MouseLeft `S`=MouseDown `D`=MouseRight
 **Mac toggle:** pos 45 = `&tog MAC_MODE`
-**Fast mouse:** hold Space (pos 51 = `&mo SPACE_MOD`) for 3× speed via BOARD_FAST conditional
+**Fast mouse:** hold pos 55 (`&mo SPACE_MOD`) for 3× speed via BOARD_FAST conditional
 
 ## BOARD_FAST Layer (layer 10) — conditional BOARD + SPACE_MOD
 Only overrides WASD mouse positions with 3× speed (MOVE_Y/X at 1800 vs default 600).

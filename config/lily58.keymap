@@ -134,7 +134,7 @@
      * │  ___ HOME  ↑   END SelLn SelW     Redo ___  ___  ___  ___  ___ │
      * │ S-RET  ←    ↓    →  C-F  ___      ___ BSPC DEL  ___  ___  ___ │
      * │  LSF Undo Cut  Copy Pst  ___×  × ___ ___ C-Hm C-End ___ ___   │
-     * │            ___  ___ SMOD  ×        ×   ___  ___  ___            │
+     * │            ___  ___  ___  ×        × SMOD  ___  ___            │
      * └─────────────────────────────────────────────────────────────────┘ */
     nav_layer {
       display-name = "nav";
@@ -215,7 +215,7 @@
      * │  ___ LCK  M↑  RCK  ___  ___      ___  ___  ___  ___  ___ OUT  │
      * │  ___  M←   M↓   M→  ___  ___      ___  ___  ___  ___  ___ STU │
      * │ BOOT RST  ___  ___  ___  ___×  × ___ MAC  ___  ___  ___ BOOT  │
-     * │            ___  ___ SMOD  ×        ×   ___  ___  ___            │
+     * │            ___  ___  ___  ×        × SMOD  ___  ___            │
      * └─────────────────────────────────────────────────────────────────┘ */
     board_layer {
       display-name = "board";
@@ -224,7 +224,7 @@
         &trans        &mkp LCLK      &mmv MOVE_UP    &mkp RCLK       &trans       &trans           &trans &trans        &trans &trans &trans &out OUT_TOG
         &trans        &mmv MOVE_LEFT &mmv MOVE_DOWN  &mmv MOVE_RIGHT &trans       &trans           &trans &trans        &trans &trans &trans &studio_unlock
         &ht_boot 0 0  &ht_reset 0 0 &trans          &trans          &trans       &trans &none &none &trans &tog MAC_MODE &trans &trans &trans &ht_boot 0 0
-                                     &trans          &mo SPACE_MOD   &trans &none           &none  &trans        &trans &trans
+                                     &trans          &trans          &trans &none           &none  &mo SPACE_MOD &trans &trans
       >;
     };
 
@@ -300,7 +300,7 @@
 
     /* ┌─────────────────────────────────────────────────────────────────┐
      * │ LAYER 10 — BOARD_FAST (conditional: BOARD + SPACE_MOD)          │
-     * │ 3x mouse speed on WASD                                          │
+     * │ 3x mouse speed on WASD (hold pos 55 in BOARD layer)                                          │
      * ├─────────────────────────────────────────────────────────────────┤
      * │  ___  ___  ___  ___  ___  ___      ___  ___  ___  ___  ___  ___ │
      * │  ___  ___ FM↑   ___  ___  ___      ___  ___  ___  ___  ___  ___ │

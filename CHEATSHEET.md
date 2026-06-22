@@ -68,7 +68,7 @@ SNIP = GUI+Shift+S (screenshot, both OS)
 BOOT  RST  ___  ___  ___  ___  │  ___  MAC  ___  ___  ___ BOOT
              [BRD] FAST* ___   │  ___  ___  ___
 ```
-*FAST = hold Space (pos 51) for 3x mouse speed
+*FAST = hold pos 55 (right inner thumb) for 3x mouse speed
 BOOT = hold 2s for bootloader
 RST = hold 1s for soft reset
 OUT = toggle USB/BLE
